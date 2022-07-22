@@ -1,11 +1,13 @@
 import React from "react";
 
+import "../../styles/navbar.scss"
+
+
 const Navbar = (props) => {
 
 
   return(
     <nav className="navbar">
-      <h2 className="navtitle">My list</h2>
       <ul>
         <li onClick={()=>console.log('playing')}>Playing</li>
         <li onClick={()=>console.log('on hold')}>On Hold</li>
