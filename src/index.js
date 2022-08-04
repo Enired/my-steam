@@ -3,7 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals'
+//Import Pages
 import Playing from "./pages/Playing";
+import OnHold from './pages/OnHold';
+import Completed from './pages/Completed';
+import Dropped from './pages/Dropped';
+
 
 import {
   BrowserRouter,
@@ -19,6 +24,9 @@ root.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="playing" element={<Playing />} />
+      <Route path="on-hold" element={<OnHold />} />
+      <Route path="completed" element={<Completed />} />
+      <Route path="dropped" element={<Dropped />} />
     </Routes>
   </BrowserRouter>
   </React.StrictMode>

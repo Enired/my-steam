@@ -28,7 +28,7 @@ const Navbar = (props) => {
         <li onClick={()=>{routeChange('/completed')}}>
           Completed
         </li>
-        <li>
+        <li onClick={()=>{routeChange('/dropped')}}>
           Dropped
         </li>
        </ul>
