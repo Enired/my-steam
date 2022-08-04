@@ -1,12 +1,12 @@
 import Navbar from "../components/navigation/Navbar"
 
-const Playing = () => {
+const Completed = () => {
   return(
     <>
-      <h1>This is the Playing Page</h1>
+      <h1>This is the Completed Page</h1>
       <Navbar/>
     </>
   )
 }
 
-export default Playing
+export default Completed
