@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals'
 //Import Pages
+import Home from './pages/Home';
 import Playing from "./pages/Playing";
 import OnHold from './pages/OnHold';
 import Completed from './pages/Completed';
@@ -22,7 +22,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />} />
+      <Route path="/" element={<Home />} />
       <Route path="playing" element={<Playing />} />
       <Route path="on-hold" element={<OnHold />} />
       <Route path="completed" element={<Completed />} />
