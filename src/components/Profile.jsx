@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import "../styles/Profile.scss";
 export const Profile = () => {
 
   // Fetching account info from player db

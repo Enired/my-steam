@@ -1,0 +1,32 @@
+//Mobile View
+.profile{
+  background-color: rgba(24, 24, 24, 0.93);
+  color: #FFFFFF;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  .profile-header{
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    text-align: left;
+    padding-left: 10vw;
+    padding-left: 10vw;
+    .persona-name{
+      font-size: 2rem;
+    }
+  }
+
+
+}
+
+
+
+
+
+
+
+//Desktop View
+@media only screen and (min-width: 481px){
+
+}
