@@ -5,18 +5,29 @@
   font-size: 1rem;
   display: flex;
   flex-direction: column;
+  padding-left: 5vw;
+  padding-right: 5vw;
   .profile-header{
     display: flex;
     flex-direction: column;
     width: 80vw;
     text-align: left;
-    padding-left: 10vw;
-    padding-left: 10vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
     .persona-name{
       font-size: 2rem;
     }
   }
+  .profile-avatar{
+    display: flex;
+    img {
+      width: 40vw;
+      height: auto;
+    }
 
+  }
 
 }
 
