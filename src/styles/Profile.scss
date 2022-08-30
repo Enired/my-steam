@@ -5,28 +5,50 @@
   font-size: 1rem;
   display: flex;
   flex-direction: column;
-  padding-left: 5vw;
-  padding-right: 5vw;
-  .profile-header{
+  align-items: center;
+  width:100vw;
+  .user-info{
     display: flex;
-    flex-direction: column;
-    width: 80vw;
-    text-align: left;
-    padding-left: 5vw;
-    padding-right: 5vw;
     padding-top: 2vh;
     padding-bottom: 2vh;
-    .persona-name{
-      font-size: 2rem;
+    width: 100%;
+    justify-content: space-between;
+
+    .profile-names{
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      padding-left: 5vw;
+      .persona-name{
+        font-size: 2rem;
+      }
+      .real-name{
+        color: #898989;
+      }
+    }
+    .profile-avatar{
+      display: flex;
+      padding-right: 5vw;
+      img {
+        width: 100%;
+        height: auto;
+      }
     }
   }
-  .profile-avatar{
-    display: flex;
-    img {
-      width: 40vw;
-      height: auto;
+  .official-steam-profile-link{
+    padding-top: 2vh;
+    padding-bottom: 4vh;
+    .link{
+      text-decoration: none;
+      border: solid 4px #89898924;
+      border-radius: 10px;
+      background-color: rgba(24, 24, 24, 0.93);
+      padding-left: 10vw;
+      padding-right: 10vw;
+      padding-top: 2vh;
+      padding-bottom: 2vh;
+      color: #57cbde;
     }
-
   }
 
 }

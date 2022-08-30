@@ -29,20 +29,29 @@ export const Profile = () => {
   return (
     <div className="profile">
       <div>NAV BAR HERE AND WILL BE REPLACED</div>
-      <div className="profile-header">
-        <div className="persona-name">
-          {username}
+      <div className="user-info">
+        <div>
+        <div className="profile-names">
+          <div className="persona-name">
+            {username}
+          </div>
+          <div className="real-name">
+            {playerName}
+          </div>
+          <br/>
+          <div className="game-count">
+            Games: {549}
+          </div>
         </div>
-        <div className="real-name">
-          {playerName}
+        </div>
+
+        <div className="profile-avatar">
+          <img src={avatar} alt="steam-profile-picture" />
         </div>
       </div>
 
-      <div className="profile-avatar">
-        <img src={avatar} alt="steam-profile-picture" />
-      </div>
-      <div className="offical-steam-profile-link">
-        {officialSteamProfile}
+      <div className="official-steam-profile-link">
+        <a href={officialSteamProfile} className="link">Official Steam Profile</a>
       </div>
 
       <div className="lists">
