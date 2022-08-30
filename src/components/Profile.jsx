@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../styles/Profile.scss";
+
+
+
 export const Profile = () => {
 
   // Fetching account info from player db
@@ -8,6 +11,8 @@ export const Profile = () => {
 
   const [player, setPlayer] = useState({});
   const [playerMeta, setPlayerMeta] = useState({});
+
+  const steamAPIKey = process.env.REACT_APP_STEAM_API_KEY;
 
   useEffect(() => {
     const playerDBUrl = 'https://playerdb.co/api/player/steam/enired'; //Change this later.
@@ -18,6 +23,12 @@ export const Profile = () => {
         setPlayer(player);
         setPlayerMeta(player.meta);
       });
+    // const steamAPIURL = `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${steamAPIKey}&steamid=76561197960434622&format=json` 
+    // axios.get(steamAPIURL)
+    // .then((res)=>{
+    //   console.log(res)
+    // })
+    // .catch((err)=>{console.log(err.message)})
   }, []);
 
 
@@ -35,9 +46,11 @@ export const Profile = () => {
           <div className="persona-name">
             {username}
           </div>
-          <div className="real-name">
-            {playerName}
-          </div>
+          {playerName && 
+            <div className="real-name">
+              {playerName}
+            </div>
+          }
           <br/>
           <div className="game-count">
             Games: {549}
@@ -55,7 +68,7 @@ export const Profile = () => {
       </div>
 
       <div className="lists">
-        <div className="games-current">
+        <div className="games" id="games-current">
           Current Games
           <ul className="game-list">
             <li className="game-list-item">test</li>
@@ -64,7 +77,7 @@ export const Profile = () => {
           </ul>
         </div>
 
-        <div className="games-completed">
+        <div className="games" id="games-completed">
           Completed Games
           <ul className="game-list">
             <li className="game-list-item">test</li>
@@ -73,7 +86,7 @@ export const Profile = () => {
           </ul>
         </div>
 
-        <div className="games-dropped">
+        <div className="games" id="games-dropped">
           Dropped Games
           <ul className="game-list">
             <li className="game-list-item">test</li>
@@ -82,7 +95,7 @@ export const Profile = () => {
           </ul>
         </div>
 
-        <div className="games-planning">
+        <div className="games" id="games-planning">
           Planned Games
           <ul className="game-list">
             <li className="game-list-item">test</li>

@@ -36,8 +36,8 @@
     }
   }
   .official-steam-profile-link{
-    padding-top: 2vh;
-    padding-bottom: 4vh;
+    margin-top: 2vh;
+    margin-bottom: 5vh;
     .link{
       text-decoration: none;
       border: solid 4px #89898924;
@@ -48,6 +48,38 @@
       padding-top: 2vh;
       padding-bottom: 2vh;
       color: #57cbde;
+    }
+  }
+
+  .lists{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    .games{
+      font-size: 1.3rem;
+      text-align: left;
+      padding-left: 5vw;
+      padding-right: 5vw;
+      .game-list{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        list-style: none;
+        padding: 0;
+        text-align: center;
+        .game-list-item{
+          font-size: 1.2rem;
+          border: solid 3px #89898924;
+          border-radius: 10px;
+          background-color: rgba(24, 24, 24, 0.93);
+          color: #898989;
+          height: fit-content;
+          padding-top: 0.3rem;
+          padding-bottom: 0.3rem;
+        }
+      }
     }
   }
 
