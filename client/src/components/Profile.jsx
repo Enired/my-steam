@@ -23,6 +23,10 @@ export const Profile = () => {
         setPlayer(player);
         setPlayerMeta(player.meta);
       });
+
+    axios.get('/steam/gamecount')
+    .then(()=>console.log('done'))
+    .catch((err)=>err.message)
     // const steamAPIURL = `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${steamAPIKey}&steamid=76561197960434622&format=json` 
     // axios.get(steamAPIURL)
     // .then((res)=>{
