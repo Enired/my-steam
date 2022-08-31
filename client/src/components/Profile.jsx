@@ -17,7 +17,7 @@ export const Profile = () => {
   const steamAPIKey = process.env.REACT_APP_STEAM_API_KEY;
 
   useEffect(() => {
-    const playerDBUrl = 'https://playerdb.co/api/player/steam/blitzk0'; //Change this later.
+    const playerDBUrl = 'https://playerdb.co/api/player/steam/enired'; //Change this later.
     axios.get(playerDBUrl)
       .then((res) => {
         const player = res.data.data.player;
