@@ -39,7 +39,7 @@ router.get('/test', function (req, res, next) {
         }
 
         client.query(
-          `DROP TABLE IF EXISTS "games"; CREATE TABLE IF NOT EXISTS "games" (game_id serial PRIMARY KEY, game_name VARCHAR(500));`, (err, result) => {
+          `DROP TABLE IF EXISTS "games"; CREATE TABLE IF NOT EXISTS "games" (game_id serial PRIMARY KEY, game_name VARCHAR(500), status DEFAULT 'Plan to Play');`, (err, result) => {
             if (err) {
               return console.error('error running query', err);
             }
