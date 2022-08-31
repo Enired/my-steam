@@ -11,28 +11,29 @@ export const Profile = () => {
 
   const [player, setPlayer] = useState({});
   const [playerMeta, setPlayerMeta] = useState({});
+  const [gamesCount, setGamesCount] = useState(0)
+
 
   const steamAPIKey = process.env.REACT_APP_STEAM_API_KEY;
 
   useEffect(() => {
-    const playerDBUrl = 'https://playerdb.co/api/player/steam/enired'; //Change this later.
+    const playerDBUrl = 'https://playerdb.co/api/player/steam/blitzk0'; //Change this later.
     axios.get(playerDBUrl)
       .then((res) => {
         const player = res.data.data.player;
-        console.log(player.meta); // Kept for testing purposes. REMOVE AFTER
+        //console.log(player.meta); // Kept for testing purposes. REMOVE AFTER
         setPlayer(player);
+        document.cookie=player.id
         setPlayerMeta(player.meta);
-      });
+      })
+      .then(()=>{
+        axios.get(`/steam/gamecount/`, {params: {playerId:document.cookie}})
+          .then((res)=>setGamesCount(res.data.gameCount))
+      })
 
-    axios.get('/steam/gamecount')
-    .then(()=>console.log('done'))
-    .catch((err)=>err.message)
-    // const steamAPIURL = `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${steamAPIKey}&steamid=76561197960434622&format=json` 
-    // axios.get(steamAPIURL)
-    // .then((res)=>{
-    //   console.log(res)
-    // })
-    // .catch((err)=>{console.log(err.message)})
+
+
+
   }, []);
 
 
@@ -57,7 +58,7 @@ export const Profile = () => {
           }
           <br/>
           <div className="game-count">
-            Games: {549}
+            Games: {gamesCount}
           </div>
         </div>
         </div>
