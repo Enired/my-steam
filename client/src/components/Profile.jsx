@@ -49,6 +49,13 @@ export const Profile = () => {
   const avatar = player.avatar;
   const playerName = playerMeta.realname;
   const officialSteamProfile = playerMeta.profileurl;
+  const randomNumber = Math.floor(Math.random() * gamesCount) //Testing Atm
+  
+  //////////////////////////////////
+  // For the game List            //
+  // Don't remove the randomizer. // 
+  // Testing purpose only.        //
+  //////////////////////////////////
   return (
     <div className="profile">
       <div>NAV BAR HERE AND WILL BE REPLACED</div>
@@ -83,36 +90,36 @@ export const Profile = () => {
         <div className="games" id="games-current">
           Current Games
           <ul className="game-list">
-            <li className="game-list-item">test</li>
-            <li className="game-list-item">test</li>
-            <li className="game-list-item">test</li>
+            {(gamesList.slice(randomNumber - 5, randomNumber)).map((game)=>{
+              return <li className="game-list-item">{game.name}</li>
+            })}
           </ul>
         </div>
 
         <div className="games" id="games-completed">
           Completed Games
           <ul className="game-list">
-            <li className="game-list-item">test</li>
-            <li className="game-list-item">test</li>
-            <li className="game-list-item">test</li>
+          {(gamesList.slice(randomNumber / 2 - 5, randomNumber / 2)).map((game)=>{
+              return <li className="game-list-item">{game.name}</li>
+            })}
           </ul>
         </div>
 
         <div className="games" id="games-dropped">
           Dropped Games
           <ul className="game-list">
-            <li className="game-list-item">test</li>
-            <li className="game-list-item">test</li>
-            <li className="game-list-item">test</li>
+          {(gamesList.slice(randomNumber / 3 - 5, randomNumber / 3)).map((game)=>{
+              return <li className="game-list-item">{game.name}</li>
+            })}
           </ul>
         </div>
 
         <div className="games" id="games-planning">
           Planned Games
           <ul className="game-list">
-            <li className="game-list-item">test</li>
-            <li className="game-list-item">test</li>
-            <li className="game-list-item">test</li>
+          {(gamesList.slice(randomNumber / 4 - 5, randomNumber / 4)).map((game)=>{
+              return <li className="game-list-item">{game.name}</li>
+            })}
           </ul>
         </div>
 
