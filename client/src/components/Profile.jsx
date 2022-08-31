@@ -12,6 +12,7 @@ export const Profile = () => {
   const [player, setPlayer] = useState({});
   const [playerMeta, setPlayerMeta] = useState({});
   const [gamesCount, setGamesCount] = useState(0)
+  const [gamesList, setGamesList] = useState([])
 
 
   const steamAPIKey = process.env.REACT_APP_STEAM_API_KEY;
@@ -28,7 +29,13 @@ export const Profile = () => {
       })
       .then(()=>{
         axios.get(`/steam/gamecount/`, {params: {playerId:document.cookie}})
-          .then((res)=>setGamesCount(res.data.gameCount))
+        .then((res)=>setGamesCount(res.data.gameCount))
+      })
+      .then(()=>{console.log('hello')})
+      .then(()=>{
+        axios.get('/steam/games/', {params: {playerId:document.cookie}})
+        .then((res)=>{setGamesList(res.data.games.games)})
+        .then(()=>console.log(gamesList))
       })
 
 

@@ -11,5 +11,15 @@ router.get('/gamecount', function(req, res, next) {
   .catch(()=>{})
 
 });
+router.get('/games', function(req, res, next) {
+  let gameCount;
+  console.log('goodbye',req.query.playerId)
+  axios.get(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${steamAPIKey}&steamid=${req.query.playerId}&format=json&include_appinfo=true`)
+  .then((res)=>{const gamesList = {games:res.data.response.games}; return gamesList})
+  .then(games=>res.json({games}))
+
+  .catch(()=>{})
+
+});
 
 module.exports = router;
