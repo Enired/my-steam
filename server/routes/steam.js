@@ -43,7 +43,7 @@ router.get('/test', function (req, res, next) {
             if (err) {
               return console.error('error running query', err);
             }
-
+            
           });
         res.data.response.games.forEach(
           (game) => {
@@ -60,7 +60,7 @@ router.get('/test', function (req, res, next) {
 
       return client;
     })
-    .then((client) => { client.end(); console.log('DB Update Complete')})
+    .then((client) => { client.end; console.log('DB Update Complete')})
     .then(() => { res.send('TEST'); })
 
     .catch(() => { });
