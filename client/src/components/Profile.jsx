@@ -58,7 +58,6 @@ export const Profile = () => {
   //////////////////////////////////
   return (
     <div className="profile">
-      <div>NAV BAR HERE AND WILL BE REPLACED</div>
       <div className="user-info">
         <div>
         <div className="profile-names">
