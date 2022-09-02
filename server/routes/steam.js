@@ -39,27 +39,30 @@ router.get('/test', function (req, res, next) {
         }
 
         client.query(
-          `DROP TABLE IF EXISTS "games"; CREATE TABLE IF NOT EXISTS "games" (game_id serial PRIMARY KEY, game_name VARCHAR(500), status VARCHAR(200) DEFAULT('Plan his Play'));`, (err, result) => {
+          `DROP TABLE IF EXISTS "games"; CREATE TABLE IF NOT EXISTS "games" (game_id serial PRIMARY KEY, game_name VARCHAR(500), status VARCHAR(200) DEFAULT('Plan to Play'));`, (err, result) => {
             if (err) {
               return console.error('error running query', err);
             }
-            
-          });
+          }
+        );
+
+        // Counter for games data 
         let counter = 0;
+        // For each game pulled from the user's account. Add it to the database with the plan to play status. Used for signup.  
         res.data.response.games.forEach(
-          (game ,index, array) => {
+          (game, index, array) => {
             client.query(
               `INSERT INTO "games"(game_name) VALUES ($1);`, [game.name], (err, result) => {
                 if (err) {
                   return console.error('error running query', err);
                 }
-                counter++
-                if(counter === array.length){
-                  console.log('DB Update Complete')
+                counter++;
+                if (counter === array.length) {
+                  console.log('DB Update Complete');
                   client.end();
                 }
-              });
-            // console.log(game.name)
+              }
+            );
           }
         );
       });
