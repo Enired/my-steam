@@ -1,15 +1,13 @@
 #navbar{
-  background: #171a21;
-  position: fixed;
-    // color: #FFFFFF;
-  // padding-top: 13px;
-  // padding-bottom: 13px;
-  // padding-left: 8px;
-  // padding-right: 8px;
-  // position: fixed;
-  // top: 0;
-  // z-index: 1;
+  background-color: #171a21;
+  top: 0;
+  left:0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
   #nav-logo{
-    height: 6vh;
+    height: 10vh;
   }
+  
+  
 }

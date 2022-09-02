@@ -5,8 +5,8 @@ import mslLogoNav from "../assets/mysteam-logo-nav.png"
 export const Navbar = (props) => {
 
   return(
-    <nav id="navbar">
+    <div id="navbar">
       <img src={mslLogoNav} alt="logo" id="nav-logo"className="logo" />
-    </nav>
+    </div>
   )
 }

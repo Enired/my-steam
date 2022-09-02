@@ -54,9 +54,8 @@
   .lists{
     display: flex;
     flex-direction: column;
-    width: 100%;
-    padding-left: 5vw;
-    padding-right: 5vw;
+    width: 100vw;
+
     .games{
       font-size: 1.3rem;
       text-align: left;
