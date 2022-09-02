@@ -5,23 +5,29 @@ const steamAPIKey = process.env.STEAM_API_KEY;
 const pg = require('pg');
 const dbConnectionString = process.env.ELEPHANT_DB_URL;
 
+//Returns number of games owned by user.
 router.get('/gamecount', function (req, res, next) {
   let gameCount;
   axios.get(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${steamAPIKey}&steamid=${req.query.playerId}&format=json`)
     .then((res) => { gameCount = res.data.response.game_count; })
     .then(() => res.json({ gameCount }))
+    //Empty catch code block so server doens't crash. Will implement handling later
     .catch(() => { });
 
 });
+
+//Getting list of games. Was used for testing to connect to steamAPI not sure if needed anymore.
 router.get('/games', (req, res) => {
   axios.get(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${steamAPIKey}&steamid=${req.query.playerId}&format=json&include_appinfo=true`)
     .then((res) => { const gamesList = { games: res.data.response.games }; return gamesList; })
     .then(games => res.json({ games }))
-
+    //Empty catch code block so server doens't crash. Will implement handling later
     .catch(() => { });
 
 });
-
+// Import user's game list for sign up. Any games bought after sign up will have to be manually added.
+// Currently fixed to one user. Change to take userID arguement
+// userID arguement will correspond to database user.id. Use that to attach games to user.  
 router.get('/import-steam-list', (req, res, next) => {
   axios.get(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${steamAPIKey}&steamid=76561198008227465&format=json&include_appinfo=true`)
     .then((res) => {
@@ -51,7 +57,7 @@ router.get('/import-steam-list', (req, res, next) => {
                 }
                 counter++;
                 if (counter === array.length) {
-                  console.log('DB Update Complete');
+                  console.log('Steam List Imported.');
                   client.end();
                 }
               }
@@ -62,8 +68,8 @@ router.get('/import-steam-list', (req, res, next) => {
 
       return;
     })
-    .then(() => { res.send('Steam List Imported'); })
-
+    .then(() => { res.send('Steam List Importing...'); })
+    //Empty catch code block so server doens't crash. Will implement handling later
     .catch(() => { });
 
 });
