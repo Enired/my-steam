@@ -7,16 +7,13 @@ const dbConnectionString = process.env.ELEPHANT_DB_URL;
 
 router.get('/gamecount', function (req, res, next) {
   let gameCount;
-  console.log('hello', req.query.playerId);
   axios.get(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${steamAPIKey}&steamid=${req.query.playerId}&format=json`)
     .then((res) => { gameCount = res.data.response.game_count; })
     .then(() => res.json({ gameCount }))
     .catch(() => { });
 
 });
-router.get('/games', function (req, res, next) {
-  let gameCount;
-  console.log('goodbye', req.query.playerId);
+router.get('/games', (req, res) => {
   axios.get(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${steamAPIKey}&steamid=${req.query.playerId}&format=json&include_appinfo=true`)
     .then((res) => { const gamesList = { games: res.data.response.games }; return gamesList; })
     .then(games => res.json({ games }))
@@ -25,12 +22,8 @@ router.get('/games', function (req, res, next) {
 
 });
 
-router.get('/test', function (req, res, next) {
-  let gameCount;
-  // console.log('goodbye',req.query.playerId)
-
+router.get('/import-steam-list', (req, res, next) => {
   axios.get(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${steamAPIKey}&steamid=76561198008227465&format=json&include_appinfo=true`)
-    //res.data.response.games is an array
     .then((res) => {
       const client = new pg.Client(dbConnectionString);
       client.connect((err) => {
@@ -39,7 +32,7 @@ router.get('/test', function (req, res, next) {
         }
 
         client.query(
-          `DROP TABLE IF EXISTS "games"; CREATE TABLE IF NOT EXISTS "games" (game_id serial PRIMARY KEY, game_name VARCHAR(500), status VARCHAR(200) DEFAULT('Plan to Play'));`, (err, result) => {
+          `DROP TABLE IF EXISTS "games"; CREATE TABLE IF NOT EXISTS "games" (game_id serial PRIMARY KEY, game_name VARCHAR(500), status VARCHAR(200) DEFAULT('Plan to Play'));`, (err) => {
             if (err) {
               return console.error('error running query', err);
             }
@@ -50,9 +43,9 @@ router.get('/test', function (req, res, next) {
         let counter = 0;
         // For each game pulled from the user's account. Add it to the database with the plan to play status. Used for signup.  
         res.data.response.games.forEach(
-          (game, index, array) => {
+          (game, _, array) => {
             client.query(
-              `INSERT INTO "games"(game_name) VALUES ($1);`, [game.name], (err, result) => {
+              `INSERT INTO "games"(game_name) VALUES ($1);`, [game.name], (err) => {
                 if (err) {
                   return console.error('error running query', err);
                 }
@@ -69,7 +62,7 @@ router.get('/test', function (req, res, next) {
 
       return;
     })
-    .then(() => { res.send('TEST'); })
+    .then(() => { res.send('Steam List Imported'); })
 
     .catch(() => { });
 
