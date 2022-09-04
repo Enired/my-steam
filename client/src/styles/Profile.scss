@@ -7,6 +7,7 @@
   flex-direction: column;
   align-items: center;
   width:100vw;
+  padding-top: 10vh;
   .user-info{
     display: flex;
     padding-top: 2vh;
@@ -30,6 +31,7 @@
       display: flex;
       padding-right: 5vw;
       img {
+        border-radius: 10px;
         width: 100%;
         height: auto;
       }

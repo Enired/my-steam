@@ -5,10 +5,19 @@
   width: 100vw;
   display: flex;
   justify-content: center;
+  align-items: center;
   position: fixed;
+  height: 10vh;
+
+  #nav-menu{
+    color: #FFFFFF;
+    font-size: 4vh;
+ 
+  }
   #nav-logo{
     height: 10vh;
+    padding-left: 13vw;
+    padding-right: 20vw;
   }
-  
-  
+
 }
