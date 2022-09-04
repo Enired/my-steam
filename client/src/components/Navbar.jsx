@@ -5,7 +5,10 @@ import mslLogoNav from "../assets/mysteam-logo-nav.png"
 import MenuIcon from '@mui/icons-material/Menu';
 import { Drawer } from "@mui/material";
 import { useState } from "react";
-import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
+import PeopleOutlineSharpIcon from '@mui/icons-material/PeopleOutlineSharp';
+import PlaylistAddSharpIcon from '@mui/icons-material/PlaylistAddSharp';
+import LoginSharpIcon from '@mui/icons-material/LoginSharp';
+import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
 export const Navbar = (props) => {
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -24,16 +27,20 @@ export const Navbar = (props) => {
       >
         <ul id="drawer-menu-items">
           <li className="drawer-menu-item">
-            My Profile
+            <PeopleOutlineSharpIcon className="drawer-menu-item-icon"/>
+            <p className="drawer-menu-item-icon">My Profile</p>
           </li>
           <li className="drawer-menu-item">
-            Add to List
+            <PlaylistAddSharpIcon className="drawer-menu-item-icon"/>
+            <p className="drawer-menu-item-icon">Add to List</p>
           </li>
           <li className="drawer-menu-item">
-            Login
+            <LoginSharpIcon className="drawer-menu-item-icon"/>
+            <p className="drawer-menu-item-icon">Login</p>
           </li>
           <li className="drawer-menu-item">
-            Logout
+            <LogoutSharpIcon className="drawer-menu-item-icon"/>
+            <p className="drawer-menu-item-icon">Logout</p>
           </li>
           
         </ul>

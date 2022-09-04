@@ -30,11 +30,17 @@
     width: fit-content;
     list-style: none;
     padding: 0;
+    margin: 0;
     .drawer-menu-item{
       padding: 20px 40px;
       border-top: 1px solid #2f3138;
       border-bottom: 1px solid #000000;
-      color: #bdbdbd
+      color: #bdbdbd;
+      display: flex;
+      align-items: center;
+      .drawer-menu-item-icon{
+        padding: 5px;
+      }
 
     }
   }
