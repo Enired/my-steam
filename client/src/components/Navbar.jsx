@@ -5,7 +5,7 @@ import mslLogoNav from "../assets/mysteam-logo-nav.png"
 import MenuIcon from '@mui/icons-material/Menu';
 import { Drawer } from "@mui/material";
 import { useState } from "react";
-import { bgcolor } from "@mui/system";
+import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 export const Navbar = (props) => {
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -22,10 +22,20 @@ export const Navbar = (props) => {
         onClose={()=>{setAnchorEl(null)}}
       
       >
-        <ul id="something">
-          <li>My Profile</li>
-          <li>Add to List</li>
-          <li>Logout</li>
+        <ul id="drawer-menu-items">
+          <li className="drawer-menu-item">
+            My Profile
+          </li>
+          <li className="drawer-menu-item">
+            Add to List
+          </li>
+          <li className="drawer-menu-item">
+            Login
+          </li>
+          <li className="drawer-menu-item">
+            Logout
+          </li>
+          
         </ul>
       </Drawer>
       <img src={mslLogoNav} alt="logo" id="nav-logo"className="logo" />

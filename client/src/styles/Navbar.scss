@@ -25,12 +25,17 @@
 #nav-drawer-menu{
   .css-4t3x6l-MuiPaper-root-MuiDrawer-paper{
     background-color: #171a21;
-    color: white
   }
-  #something {
+  #drawer-menu-items {
     width: fit-content;
     list-style: none;
-    padding: 0 20vw;
+    padding: 0;
+    .drawer-menu-item{
+      padding: 20px 40px;
+      border-top: 1px solid #2f3138;
+      border-bottom: 1px solid #000000;
+      color: #bdbdbd
 
+    }
   }
 }
