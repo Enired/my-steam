@@ -13,6 +13,7 @@ export const Navbar = (props) => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const loggedIn = false
   return(
     <div id="navbar">
       <MenuIcon id="nav-menu"
@@ -26,22 +27,27 @@ export const Navbar = (props) => {
       
       >
         <ul id="drawer-menu-items">
-          <li className="drawer-menu-item">
-            <PeopleOutlineSharpIcon className="drawer-menu-item-icon"/>
-            <p className="drawer-menu-item-icon">My Profile</p>
-          </li>
-          <li className="drawer-menu-item">
-            <PlaylistAddSharpIcon className="drawer-menu-item-icon"/>
-            <p className="drawer-menu-item-icon">Add to List</p>
-          </li>
+          {!loggedIn ? 
           <li className="drawer-menu-item">
             <LoginSharpIcon className="drawer-menu-item-icon"/>
             <p className="drawer-menu-item-icon">Login</p>
           </li>
-          <li className="drawer-menu-item">
-            <LogoutSharpIcon className="drawer-menu-item-icon"/>
-            <p className="drawer-menu-item-icon">Logout</p>
+          :
+          <li>
+            <li className="drawer-menu-item">
+              <PeopleOutlineSharpIcon className="drawer-menu-item-icon"/>
+              <p className="drawer-menu-item-icon">My Profile</p>
+            </li>
+            <li className="drawer-menu-item">
+              <PlaylistAddSharpIcon className="drawer-menu-item-icon"/>
+              <p className="drawer-menu-item-icon">Add to List</p>
+            </li>
+            <li className="drawer-menu-item">
+              <LogoutSharpIcon className="drawer-menu-item-icon"/>
+              <p className="drawer-menu-item-icon">Logout</p>
+            </li>
           </li>
+          }
           
         </ul>
       </Drawer>
