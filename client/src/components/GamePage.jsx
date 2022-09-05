@@ -9,17 +9,26 @@ export const GamePage = (props) => {
 
   return (
     <div class="game-page">
-      <table>
-        <tr>
-          <th>Game Pic</th>
-          <th>Game Name</th>
-          <th>Game Status</th>
+      <table className="game-list">
+        <tr className="game-list-table-headers">
+          <th className="game-list-table-header">Game Pic</th>
+          <th className="game-list-table-header">Game Name</th>
+          <th className="game-list-table-header">Game Status</th>
         </tr>
-        <tr>
-          <td><img src={`http://media.steampowered.com/steamcommunity/public/images/apps/${appid}/${hash}.jpg`} alt="" /></td>
-          <td>{gameName}</td>
-          <td>{gameStatus}</td>
-        
+        <tr className="game-list-table-data">
+          <td className="game-list-table-data-item game-list-table-img"><img src={`http://media.steampowered.com/steamcommunity/public/images/apps/${appid}/${hash}.jpg`} alt="" /></td>
+          <td className="game-list-table-data-item">{gameName}</td>
+          <td className="game-list-table-data-item">{gameStatus}</td>
+        </tr>
+        <tr className="game-list-table-data">
+          <td className="game-list-table-data-item game-list-table-img"><img src={`http://media.steampowered.com/steamcommunity/public/images/apps/${appid}/${hash}.jpg`} alt="" /></td>
+          <td className="game-list-table-data-item">{gameName}</td>
+          <td className="game-list-table-data-item">{gameStatus}</td>
+        </tr>
+        <tr className="game-list-table-data">
+          <td className="game-list-table-data-item game-list-table-img"><img src={`http://media.steampowered.com/steamcommunity/public/images/apps/${appid}/${hash}.jpg`} alt="" /></td>
+          <td className="game-list-table-data-item">{gameName}</td>
+          <td className="game-list-table-data-item">{gameStatus}</td>
         </tr>
       </table>
     </div>
