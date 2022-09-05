@@ -1,0 +1,98 @@
+//Mobile View
+.game-page{
+  background-color: rgba(24, 24, 24, 0.93);
+  color: #FFFFFF;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width:100vw;
+  padding-top: 10vh;
+  .user-info{
+    display: flex;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    width: 100%;
+    justify-content: space-between;
+
+    .profile-names{
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      padding-left: 5vw;
+      .persona-name{
+        font-size: 2rem;
+      }
+      .real-name{
+        color: #898989;
+      }
+    }
+    .profile-avatar{
+      display: flex;
+      padding-right: 5vw;
+      img {
+        border-radius: 10px;
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+  .official-steam-profile-link{
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+    .link{
+      text-decoration: none;
+      border: solid 4px #89898924;
+      border-radius: 10px;
+      background-color: rgba(24, 24, 24, 0.93);
+      padding-left: 10vw;
+      padding-right: 10vw;
+      padding-top: 2vh;
+      padding-bottom: 2vh;
+      color: #57cbde;
+    }
+  }
+
+  .lists{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+
+    .games{
+      font-size: 1.3rem;
+      text-align: left;
+      padding-left: 5vw;
+      padding-right: 5vw;
+      .game-list{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        list-style: none;
+        padding: 0;
+        text-align: center;
+        .game-list-item{
+          font-size: 1.2rem;
+          border: solid 3px #89898924;
+          border-radius: 10px;
+          background-color: rgba(24, 24, 24, 0.93);
+          color: #898989;
+          height: fit-content;
+          padding-top: 0.3rem;
+          padding-bottom: 0.3rem;
+        }
+      }
+    }
+  }
+
+}
+
+
+
+
+
+
+
+//Desktop View
+@media only screen and (min-width: 481px){
+
+}
