@@ -9,8 +9,15 @@
   width:100vw;
   padding-top: 10vh;
   .game-list{
-    
-  }
+    width: 80%;
+    text-align: center;
+    border-collapse: collapse;
+    tr{
+      border: 2px black solid;
+    }
+    }
+ 
+
 }
 
 
