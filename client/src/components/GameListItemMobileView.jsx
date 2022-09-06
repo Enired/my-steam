@@ -1,10 +1,10 @@
 export const GameListItemMobileView = (props) => {
   return (
-    <tr>
+    <tr className="game-list-mobile">
       <td>
-        <table>
+        <table id="something">
           <tbody>
-            <tr className="game-list-mobile">
+            <tr>
               <td className="game-list-table-data-item game-list-table-img" colSpan={2}><img src={props.gamePic} alt="Game Icon" /></td>
             </tr>
             <tr>

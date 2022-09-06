@@ -8,19 +8,36 @@
   align-items: center;
   width:100vw;
   padding-top: 11vh;
+  padding-bottom: 3vh;
   .game-list{
     width: 80%;
-    text-align: center;
+    text-align: right;
     display: flex;
     justify-content: center;
     border-collapse: collapse;
     tr{
-      border: 2px black solid;
+      border-bottom: #898989 2px solid;
     }
 
+    .game-list-mobile{
+      // box-shadow: #898989 3px 1px 3px;
+      
+      
+    }
+    #something{
+      border-spacing: 10px;
+      // border: 2px #898989 solid;
+      // margin: 20px 20px;
+      th{
+        text-align: start;
+      }
+
+    }
     img{
       width: 250px;
-      height: 100px
+      height: 100px;
+      box-shadow: #898989 1px 1px 1px;
+
     }
     }
  
