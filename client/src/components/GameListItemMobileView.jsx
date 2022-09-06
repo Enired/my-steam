@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 export const GameListItemMobileView = (props) => {
+
+  const [gameStatus, setGameStatus] = useState(props.gameStatus)
   return (
     <tr className="game-list-mobile">
       <td>
@@ -14,6 +18,16 @@ export const GameListItemMobileView = (props) => {
             <tr>
               <th className="game-list-table-header">Status:</th>
               <td className="game-list-table-data-item">{props.gameStatus}</td>
+            </tr>
+            <tr>
+              <th className="game-list-table-header">Status:</th>
+              <td className="game-list-table-data-item"><select name={`${props.gameName}-selector`} id={`${props.gameName}-selector`} value={gameStatus} onChange={(event=>{setGameStatus(event.target.value)})}>
+                <option>{gameStatus}</option>
+                <option value="In Progress">In Progress</option>
+                <option value="On Hold">On Hold</option>
+                <option value="Dropped">Dropped</option>
+                <option value="Plan to Play">Plan to Play</option>
+                </select></td>
             </tr>
           </tbody>
         </table>
