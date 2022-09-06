@@ -32,7 +32,7 @@ export const GameListItemMobileView = (props) => {
                 onChange={(event=>{setGameStatus(event.target.value)})}
                 >
                   <option>{gameStatus}</option>
-                  <option value="In Progress">In Progress</option>
+                  <option value="In Progress">Current</option>
                   <option value="On Hold">On Hold</option>
                   <option value="Dropped">Dropped</option>
                   <option value="Plan to Play">Plan to Play</option>

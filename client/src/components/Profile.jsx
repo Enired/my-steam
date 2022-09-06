@@ -90,8 +90,8 @@ export const Profile = (props) => {
         <div className="games" id="games-current">
           Current Games
           <ul className="game-list">
-            {(gamesList.slice(randomNumber - 5, randomNumber)).map((game)=>{
-              return <li className="game-list-item">{game.name}</li>
+            {(props.gamesListCurrent).map((game)=>{
+              return <li className="game-list-item">{game.game_name}</li>
             })}
           </ul>
         </div>
