@@ -38,7 +38,7 @@ router.get('/import-steam-list', (req, res, next) => {
         }
 
         client.query(
-          `DROP TABLE IF EXISTS "games"; CREATE TABLE IF NOT EXISTS "games" (game_id serial PRIMARY KEY, game_name VARCHAR(500), status VARCHAR(200) DEFAULT('Plan to Play'));`, (err) => {
+          `DROP TABLE IF EXISTS "games"; CREATE TABLE IF NOT EXISTS "games" (id INT, game_name VARCHAR(500), status VARCHAR(200) DEFAULT('Plan to Play'));`, (err) => {
             if (err) {
               return console.error('error running query', err);
             }
@@ -51,7 +51,7 @@ router.get('/import-steam-list', (req, res, next) => {
         res.data.response.games.forEach(
           (game, _, array) => {
             client.query(
-              `INSERT INTO "games"(game_name) VALUES ($1);`, [game.name], (err) => {
+              `INSERT INTO "games"(id, game_name) VALUES ($1, $2);`, [game.appid, game.name], (err) => {
                 if (err) {
                   return console.error('error running query', err);
                 }

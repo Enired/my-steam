@@ -9,7 +9,7 @@ export const GameListItemMobileView = (props) => {
         <table id="something">
           <tbody>
             <tr>
-              <td className="game-list-table-data-item game-list-table-img" colSpan={2}><img src={props.gamePic} alt="Game Icon" /></td>
+              <td className="game-list-table-data-item game-list-table-img" colSpan={2}><img src={props.gamePic} alt={'Image Unavailable'} /></td>
             </tr>
             <tr>
               <th className="game-list-table-header">Name:</th>

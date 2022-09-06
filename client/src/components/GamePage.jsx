@@ -67,18 +67,20 @@ export const GamePage = (props) => {
           <th className="game-list-table-header">Game Status</th>
         </tr> */}
           {gamesList.map(game => {
-            return (<GameListItemMobileView
-              key={game.appid}
-              gamePic={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg`}
-              gameName={game.name}
-              gameStatus={'game.status'}
-            />
-              // <tr className="game-list-table-data" key={game.appid}>
-              //   <td className="game-list-table-data-item game-list-table-img"><img src={`http://media.steampowered.com/steamcommunity/public/images/apps/${game.appid}/${game.hash}.jpg`} alt="" /></td>
-              //   <td className="game-list-table-data-item">{game.gameName}</td>
-              //   <td className="game-list-table-data-item">{game.gameStatus}</td>
-              // </tr>
-            );
+    
+              return (<GameListItemMobileView
+                key={game.appid}
+                gamePic={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg`}
+                gameName={game.name}
+                gameStatus={'game.status'}
+              />
+                // <tr className="game-list-table-data" key={game.appid}>
+                //   <td className="game-list-table-data-item game-list-table-img"><img src={`http://media.steampowered.com/steamcommunity/public/images/apps/${game.appid}/${game.hash}.jpg`} alt="" /></td>
+                //   <td className="game-list-table-data-item">{game.gameName}</td>
+                //   <td className="game-list-table-data-item">{game.gameStatus}</td>
+                // </tr>
+              );
+            
           })}
         </tbody>
       </table>
