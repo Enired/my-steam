@@ -30,7 +30,28 @@ export const GamePage = (props) => {
       hash: '29b26fc0eb22ebbeeeed1e4658dcbc6b837279c7',
       gameStatus: 'Plan to play'
 
-    }
+    },
+    {
+      gameName: 'SpaceChem',
+      appid: 92800,
+      hash: '29b26fc0eb22ebbeeeed1e4658dcbc6b837279c7',
+      gameStatus: 'Plan to play'
+
+    },
+    {
+      gameName: 'SpaceChem',
+      appid: 92800,
+      hash: '29b26fc0eb22ebbeeeed1e4658dcbc6b837279c7',
+      gameStatus: 'Plan to play'
+
+    },
+    {
+      gameName: 'SpaceChem',
+      appid: 92800,
+      hash: '29b26fc0eb22ebbeeeed1e4658dcbc6b837279c7',
+      gameStatus: 'Plan to play'
+
+    },
 
   ];
 
@@ -46,7 +67,7 @@ export const GamePage = (props) => {
           {gamesList.map(game => {
             return (<GameListItemMobileView
               key={game.appid}
-              gamePic={`http://media.steampowered.com/steamcommunity/public/images/apps/${game.appid}/${game.hash}.jpg`}
+              gamePic={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg`}
               gameName={game.gameName}
               gameStatus={game.gameStatus}
             />

@@ -7,13 +7,20 @@
   flex-direction: column;
   align-items: center;
   width:100vw;
-  padding-top: 10vh;
+  padding-top: 11vh;
   .game-list{
     width: 80%;
     text-align: center;
+    display: flex;
+    justify-content: center;
     border-collapse: collapse;
     tr{
       border: 2px black solid;
+    }
+
+    img{
+      width: 250px;
+      height: 100px
     }
     }
  
