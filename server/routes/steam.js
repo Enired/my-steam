@@ -38,7 +38,7 @@ router.get('/import-steam-list', (req, res, next) => {
         }
 
         client.query(
-          `DROP TABLE IF EXISTS "games"; CREATE TABLE IF NOT EXISTS "games" (id INT, game_name VARCHAR(500), status VARCHAR(200) DEFAULT('Plan to Play'));`, (err) => {
+          `DROP TABLE IF EXISTS "games"; CREATE TABLE IF NOT EXISTS "games" (id INT, game_name VARCHAR(500), status VARCHAR(200) DEFAULT('Planned'));`, (err) => {
             if (err) {
               return console.error('error running query', err);
             }

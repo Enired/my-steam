@@ -12,8 +12,8 @@ export const Profile = (props) => {
 
   const [player, setPlayer] = useState({});
   const [playerMeta, setPlayerMeta] = useState({});
-  const [gamesCount, setGamesCount] = useState(0)
-  const [gamesList, setGamesList] = useState([])
+  const [gamesCount, setGamesCount] = useState(0);
+  const [gamesList, setGamesList] = useState([]);
 
 
   const steamAPIKey = process.env.REACT_APP_STEAM_API_KEY;
@@ -24,17 +24,17 @@ export const Profile = (props) => {
       .then((res) => {
         const player = res.data.data.player;
         setPlayer(player);
-        document.cookie=player.id
+        document.cookie = player.id;
         setPlayerMeta(player.meta);
       })
-      .then(()=>{
-        axios.get(`/steam/gamecount/`, {params: {playerId:document.cookie}})
-        .then((res)=>setGamesCount(res.data.gameCount))
+      .then(() => {
+        axios.get(`/steam/gamecount/`, { params: { playerId: document.cookie } })
+          .then((res) => setGamesCount(res.data.gameCount));
       })
-      .then(()=>{
-        axios.get('/steam/games/', {params: {playerId:document.cookie}})
-        .then((res)=>{setGamesList(res.data.games.games)})
-      })
+      .then(() => {
+        axios.get('/steam/games/', { params: { playerId: document.cookie } })
+          .then((res) => { setGamesList(res.data.games.games); });
+      });
 
 
 
@@ -47,8 +47,8 @@ export const Profile = (props) => {
   const avatar = player.avatar;
   const playerName = playerMeta.realname;
   const officialSteamProfile = playerMeta.profileurl;
-  const randomNumber = Math.floor(Math.random() * gamesCount) //Testing Atm
-  
+  const randomNumber = Math.floor(Math.random() * gamesCount); //Testing Atm
+
   //////////////////////////////////
   // For the game List            //
   // Don't remove the randomizer. // 
@@ -58,20 +58,20 @@ export const Profile = (props) => {
     <div className="profile">
       <div className="user-info">
         <div>
-        <div className="profile-names">
-          <div className="persona-name">
-            {username}
-          </div>
-          {playerName && 
-            <div className="real-name">
-              {playerName}
+          <div className="profile-names">
+            <div className="persona-name">
+              {username}
             </div>
-          }
-          <br/>
-          <div className="game-count">
-            Games: {gamesCount}
+            {playerName &&
+              <div className="real-name">
+                {playerName}
+              </div>
+            }
+            <br />
+            <div className="game-count">
+              Games: {gamesCount}
+            </div>
           </div>
-        </div>
         </div>
 
         <div className="profile-avatar">
@@ -83,15 +83,15 @@ export const Profile = (props) => {
         <a href={officialSteamProfile} className="link">Official Steam Profile</a>
       </div>
       <div className="official-steam-profile-link">
-        <a onClick={()=>{props.switchView()}} className="link">See All Games</a>
+        <a onClick={() => { props.switchView(); }} className="link">See All Games</a>
       </div>
 
       <div className="lists">
         <div className="games" id="games-current">
           Current Games
           <ul className="game-list">
-            {(props.gamesListCurrent).map((game)=>{
-              return <li className="game-list-item">{game.game_name}</li>
+            {(props.gamesListCurrent).map((game) => {
+              return <li className="game-list-item">{game.game_name}</li>;
             })}
           </ul>
         </div>
@@ -99,26 +99,29 @@ export const Profile = (props) => {
         <div className="games" id="games-completed">
           Completed Games
           <ul className="game-list">
-          {(gamesList.slice(randomNumber / 2 - 5, randomNumber / 2)).map((game)=>{
-              return <li className="game-list-item">{game.name}</li>
+            {(props.gamesListCompleted.slice(0, 5)).map((game) => {
+              return <li className="game-list-item">{game.game_name}</li>;
             })}
+            {props.gamesListCompleted.length > 5 && <li className="game-list-item">See More</li>}
           </ul>
         </div>
 
         <div className="games" id="games-dropped">
           Dropped Games
           <ul className="game-list">
-          {(gamesList.slice(randomNumber / 3 - 5, randomNumber / 3)).map((game)=>{
-              return <li className="game-list-item">{game.name}</li>
+            {(props.gamesListDropped.slice(0, 5)).map((game) => {
+              return <li className="game-list-item">{game.game_name}</li>;
             })}
+            {props.gamesListDropped.length > 5 && <li className="game-list-item">See More</li>}
+
           </ul>
         </div>
 
         <div className="games" id="games-planning">
           Planned Games
           <ul className="game-list">
-          {(gamesList.slice(randomNumber / 4 - 5, randomNumber / 4)).map((game)=>{
-              return <li className="game-list-item">{game.name}</li>
+            {(props.gamesListPlanned.slice(0, 5)).map((game) => {
+              return <li className="game-list-item">{game.game_name}</li>;
             })}
           </ul>
         </div>

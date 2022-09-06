@@ -12,6 +12,9 @@ function App() {
 
   const [gamesListAll, setGamesListAll] = useState([])
   const [gamesListCurrent, setGamesListCurrent] = useState([])
+  const [gamesListCompleted, setGamesListCompleted] = useState([])
+  const [gamesListDropped, setGamesListDropped] = useState([])
+  const [gamesListPlanned, setGamesListPlanned] = useState([])
   const [player, setPlayer] = useState({});
 
   useEffect(() => {
@@ -31,9 +34,22 @@ function App() {
         axios.get('/steam/games/', {params: {playerId:document.cookie}})
         .then((res)=>{setGamesListAll(res.data.games.games)})
       })
+    //Get list of currently playing games
     axios.get('/games/current')
-    .then(res=>{console.log(res.data)})
-
+    .then(res=>{setGamesListCurrent(res.data)})
+    
+    //Get list of completed games
+    axios.get('/games/completed')
+    .then(res=>{setGamesListCompleted(res.data)})
+    
+    //Get list of dropped games
+    axios.get('/games/dropped')
+    .then(res=>{setGamesListDropped(res.data)})
+    
+    //Get list of planned games
+    axios.get('/games/planned')
+    .then(res=>{setGamesListPlanned(res.data)})
+    
 
 
 
@@ -47,7 +63,15 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      {!profileHidden && <Profile switchView={switchView} gamesListCurrent={gamesListCurrent}/>}
+      {!profileHidden && 
+      <Profile 
+      switchView={switchView} 
+      gamesListCurrent={gamesListCurrent}
+      gamesListCompleted={gamesListCompleted}
+      gamesListDropped={gamesListDropped}
+      gamesListPlanned={gamesListPlanned}
+      />
+      }
       {!gamePageAllHidden && <GamePage id="game-page-all" gamesListAll={gamesListAll} switchView={switchView}/>}
     </div>
 
