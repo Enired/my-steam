@@ -21,13 +21,23 @@ export const GameListItemMobileView = (props) => {
             </tr>
             <tr>
               <th className="game-list-table-header">Status:</th>
-              <td className="game-list-table-data-item"><select name={`${props.gameName}-selector`} id={`${props.gameName}-selector`} value={gameStatus} onChange={(event=>{setGameStatus(event.target.value)})}>
-                <option>{gameStatus}</option>
-                <option value="In Progress">In Progress</option>
-                <option value="On Hold">On Hold</option>
-                <option value="Dropped">Dropped</option>
-                <option value="Plan to Play">Plan to Play</option>
-                </select></td>
+              <td className="game-list-table-data-item">
+
+                <select 
+                className="game-list-status-selector" 
+                name={`${props.gameName.replaceAll(' ', '-').toLowerCase()}-selector`} 
+                id={`${props.gameName.replaceAll(' ', '-').toLowerCase()}-selector`} 
+                value={gameStatus} 
+                onChange={(event=>{setGameStatus(event.target.value)})}
+                >
+                  <option>{gameStatus}</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="On Hold">On Hold</option>
+                  <option value="Dropped">Dropped</option>
+                  <option value="Plan to Play">Plan to Play</option>
+
+                </select>
+              </td>
             </tr>
           </tbody>
         </table>
