@@ -1,10 +1,11 @@
+import { useSlotProps } from "@mui/base";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../styles/Profile.scss";
 
 
 
-export const Profile = () => {
+export const Profile = (props) => {
 
   // Fetching account info from player db
   // Will use a search bar to dynamically change what user is loaded but for the time being. It will be my own. Enired.
@@ -83,6 +84,9 @@ export const Profile = () => {
 
       <div className="official-steam-profile-link">
         <a href={officialSteamProfile} className="link">Official Steam Profile</a>
+      </div>
+      <div className="official-steam-profile-link">
+        <a onClick={()=>{props.switchView()}} className="link">See All Games</a>
       </div>
 
       <div className="lists">

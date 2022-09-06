@@ -8,13 +8,13 @@
   align-items: center;
   width:100vw;
   padding-top: 11vh;
-  padding-bottom: 3vh;
   .game-list{
     width: 80%;
     text-align: right;
     display: flex;
     justify-content: center;
     border-collapse: collapse;
+    padding-bottom: 8vh;
     tr{
       border-bottom: #898989 2px solid;
     }
@@ -39,6 +39,18 @@
       box-shadow: #898989 1px 1px 1px;
 
     }
+    }
+
+    #back-to-profile-button{
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      font-size: 5vh;
+      margin-right: 5vw;
+      margin-bottom: 2vh;
+      border: #898989 solid 2px;
+      border-radius: 20px;
+      cursor: pointer;
     }
  
 

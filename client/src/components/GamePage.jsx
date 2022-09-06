@@ -1,6 +1,7 @@
 import "../styles/GamePage.scss";
 
 import { GameListItemMobileView } from "./GameListItemMobileView";
+import ArrowBackSharpIcon from '@mui/icons-material/ArrowBackSharp';
 
 export const GamePage = (props) => {
 
@@ -80,6 +81,7 @@ export const GamePage = (props) => {
           })}
         </tbody>
       </table>
+      <ArrowBackSharpIcon id="back-to-profile-button" onClick={()=>{props.switchView()}}></ArrowBackSharpIcon>
     </div>
   );
 };
