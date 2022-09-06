@@ -23,7 +23,6 @@ export const Profile = (props) => {
     axios.get(playerDBUrl)
       .then((res) => {
         const player = res.data.data.player;
-        //console.log(player.meta); // Kept for testing purposes. REMOVE AFTER
         setPlayer(player);
         document.cookie=player.id
         setPlayerMeta(player.meta);
@@ -32,11 +31,9 @@ export const Profile = (props) => {
         axios.get(`/steam/gamecount/`, {params: {playerId:document.cookie}})
         .then((res)=>setGamesCount(res.data.gameCount))
       })
-      .then(()=>{console.log('hello')})
       .then(()=>{
         axios.get('/steam/games/', {params: {playerId:document.cookie}})
         .then((res)=>{setGamesList(res.data.games.games)})
-        .then(()=>console.log(gamesList))
       })
 
 
