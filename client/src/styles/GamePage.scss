@@ -10,13 +10,14 @@
   padding-top: 11vh;
   .game-list{
     width: 80%;
-    text-align: right;
+    text-align: center;
     display: flex;
     justify-content: center;
     border-collapse: collapse;
     padding-bottom: 8vh;
     tr{
       border-bottom: #898989 2px solid;
+      text-align: center;
     }
 
     .game-list-mobile{
@@ -24,10 +25,13 @@
       
       
     }
-    #something{
+    .something{
       border-spacing: 10px;
       // border: 2px #898989 solid;
       // margin: 20px 20px;
+      margin: 0;
+      display: flex;
+      justify-content: center;
       th{
         text-align: start;
       }
@@ -37,6 +41,8 @@
       width: 250px;
       height: 100px;
       box-shadow: #898989 1px 1px 1px;
+      text-align: center;
+
 
     }
     }

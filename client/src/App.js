@@ -7,8 +7,8 @@ import "./App.css"
 import { GamePage } from './components/GamePage';
 import { useState, useEffect } from 'react';
 function App() {
-  const [profileHidden, setProfileHidden] = useState(false)
-  const [gamePageAllHidden, setGamePageAllHidden] = useState(true)
+  const [profileHidden, setProfileHidden] = useState(true)
+  const [gamePageAllHidden, setGamePageAllHidden] = useState(false)
 
   const [gamesListAll, setGamesListAll] = useState([])
   const [player, setPlayer] = useState({});

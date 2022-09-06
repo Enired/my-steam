@@ -1,4 +1,5 @@
 import { useState } from "react";
+import banner from "../assets/steam-banner.png"
 
 export const GameListItemMobileView = (props) => {
 
@@ -6,10 +7,10 @@ export const GameListItemMobileView = (props) => {
   return (
     <tr className="game-list-mobile">
       <td>
-        <table id="something">
+        <table className="something">
           <tbody>
             <tr>
-              <td className="game-list-table-data-item game-list-table-img" colSpan={2}><img src={props.gamePic} alt={'Image Unavailable'} /></td>
+              <td className="game-list-table-data-item game-list-table-img" colSpan={2}><img src={props.gamePic} alt={'Image Unavailable'} onError={event=>{event.target.src=banner}}/></td>
             </tr>
             <tr>
               <th className="game-list-table-header">Name:</th>
