@@ -93,7 +93,10 @@ export const Profile = (props) => {
             {(props.gamesListCurrent).map((game) => {
               return <li key={game.id} className="game-list-item">{game.game_name}</li>;
             })}
-            <li className="game-list-item game-list-see-more" onClick={props.switchViewCurrent}>See More</li>
+            {props.gamesListCurrent.length > 0 ?
+              <li className="game-list-item game-list-see-more" onClick={props.switchViewCurrent}>See More</li> :
+              <li className="game-list-item game-list-see-more">No games</li>
+            }
           </ul>
         </div>
 
@@ -103,7 +106,10 @@ export const Profile = (props) => {
             {(props.gamesListCompleted.slice(0, 5)).map((game) => {
               return <li key={game.id} className="game-list-item">{game.game_name}</li>;
             })}
-            <li className="game-list-item game-list-see-more" onClick={props.switchViewCompleted}>See More</li>
+            {props.gamesListCompleted.length > 0 ?
+              <li className="game-list-item game-list-see-more" onClick={props.switchViewCompleted}>See More</li> :
+              <li className="game-list-item game-list-see-more">No games</li>
+            }
           </ul>
         </div>
 
@@ -113,8 +119,9 @@ export const Profile = (props) => {
             {(props.gamesListDropped.slice(0, 5)).map((game) => {
               return <li key={game.id} className="game-list-item">{game.game_name}</li>;
             })}
-            <li className="game-list-item game-list-see-more" onClick={props.switchViewDropped}>See More</li>
-
+            {props.gamesListDropped.length > 0 ?
+            <li className="game-list-item game-list-see-more" onClick={props.switchViewDropped}>See More</li>:              <li className="game-list-item game-list-see-more">No games</li>
+            }
           </ul>
         </div>
 
@@ -124,7 +131,9 @@ export const Profile = (props) => {
             {(props.gamesListPlanned.slice(0, 5)).map((game) => {
               return <li key={game.id} className="game-list-item">{game.game_name}</li>;
             })}
-            <li className="game-list-item game-list-see-more" onClick={props.switchViewPlanned}>See More</li>
+            {props.gamesListPlanned.length > 0 ?
+            <li className="game-list-item game-list-see-more" onClick={props.switchViewPlanned}>See More</li>:              <li className="game-list-item game-list-see-more">No games</li>
+            }
           </ul>
         </div>
 
