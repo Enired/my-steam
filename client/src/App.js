@@ -94,6 +94,11 @@ function App() {
       {!profileHidden && 
       <Profile 
       switchViewAll={switchViewAll} 
+      switchViewCurrent={switchViewCurrent}
+      switchViewCompleted={switchViewCompleted}
+      switchViewDropped={switchViewDropped}
+      switchViewPlanned={switchViewPlanned}
+
       gamesListAll={gamesListAll}
       gamesListCurrent={gamesListCurrent}
       gamesListCompleted={gamesListCompleted}

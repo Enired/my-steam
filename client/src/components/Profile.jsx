@@ -93,7 +93,7 @@ export const Profile = (props) => {
             {(props.gamesListCurrent).map((game) => {
               return <li key={game.id} className="game-list-item">{game.game_name}</li>;
             })}
-            {props.gamesListCurrent.length > 5 && <li className="game-list-item game-list-see-more">See More</li>}
+            <li className="game-list-item game-list-see-more" onClick={props.switchViewCurrent}>See More</li>
           </ul>
         </div>
 
@@ -103,7 +103,7 @@ export const Profile = (props) => {
             {(props.gamesListCompleted.slice(0, 5)).map((game) => {
               return <li key={game.id} className="game-list-item">{game.game_name}</li>;
             })}
-            {props.gamesListCompleted.length > 5 && <li className="game-list-item game-list-see-more">See More</li>}
+            <li className="game-list-item game-list-see-more" onClick={props.switchViewCompleted}>See More</li>
           </ul>
         </div>
 
@@ -113,7 +113,7 @@ export const Profile = (props) => {
             {(props.gamesListDropped.slice(0, 5)).map((game) => {
               return <li key={game.id} className="game-list-item">{game.game_name}</li>;
             })}
-            {props.gamesListDropped.length > 5 && <li className="game-list-item game-list-see-more">See More</li>}
+            <li className="game-list-item game-list-see-more" onClick={props.switchViewDropped}>See More</li>
 
           </ul>
         </div>
@@ -124,7 +124,7 @@ export const Profile = (props) => {
             {(props.gamesListPlanned.slice(0, 5)).map((game) => {
               return <li key={game.id} className="game-list-item">{game.game_name}</li>;
             })}
-            {props.gamesListPlanned.length > 5 && <li className="game-list-item game-list-see-more">See More</li>}
+            <li className="game-list-item game-list-see-more" onClick={props.switchViewPlanned}>See More</li>
           </ul>
         </div>
 
