@@ -36,12 +36,8 @@ function App() {
         const player = res.data.data.player;
         setPlayer(player);
         document.cookie=player.id
-        // setPlayerMeta(player.meta);
       })
-      // .then(()=>{
-      //   axios.get(`/steam/gamecount/`, {params: {playerId:document.cookie}})
-      //   .then((res)=>setGamesCount(res.data.gameCount))
-      // })
+
 
     //Get list of currently playing games
     axios.get('/games/current')
@@ -64,8 +60,7 @@ function App() {
 
 
 
-  }, []);
-
+  }, [profileHidden]);
 
   const switchViewAll = () =>{
     setProfileHidden(!profileHidden)
