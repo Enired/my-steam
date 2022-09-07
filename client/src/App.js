@@ -70,22 +70,27 @@ function App() {
   const switchViewAll = () =>{
     setProfileHidden(!profileHidden)
     setGamePageAllHidden(!gamePageAllHidden)
+    window.scrollTo(0,0);
   }
   const switchViewCurrent = () =>{
     setProfileHidden(!profileHidden)
     setGamePageCurrentHidden(!gamePageCurrentHidden)
+    window.scrollTo(0,0);
   }
   const switchViewCompleted = () =>{
     setProfileHidden(!profileHidden)
     setGamePageCompletedHidden(!gamePageCompletedHidden)
+    window.scrollTo(0,0);
   }
   const switchViewDropped = () =>{
     setProfileHidden(!profileHidden)
     setGamePageDroppedHidden(!gamePageDroppedHidden)
+    window.scrollTo(0,0);
   }
   const switchViewPlanned = () =>{
     setProfileHidden(!profileHidden)
     setGamePagePlannedHidden(!gamePagePlannedHidden)
+    window.scrollTo(0,0);
   }
 
   return (
