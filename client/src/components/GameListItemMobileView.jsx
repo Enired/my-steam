@@ -18,10 +18,6 @@ export const GameListItemMobileView = (props) => {
             </tr>
             <tr>
               <th className="game-list-table-header">Status:</th>
-              <td className="game-list-table-data-item">{props.gameStatus}</td>
-            </tr>
-            <tr>
-              <th className="game-list-table-header">Status:</th>
               <td className="game-list-table-data-item">
 
                 <select 
@@ -32,10 +28,10 @@ export const GameListItemMobileView = (props) => {
                 onChange={(event=>{setGameStatus(event.target.value)})}
                 >
                   <option>{gameStatus}</option>
-                  <option value="In Progress">Current</option>
-                  <option value="On Hold">On Hold</option>
+                  <option value="Current">Current</option>
+                  {/* <option value="On Hold">On Hold</option> */}
                   <option value="Dropped">Dropped</option>
-                  <option value="Plan to Play">Plan to Play</option>
+                  <option value="Planned">Planned</option>
 
                 </select>
               </td>
