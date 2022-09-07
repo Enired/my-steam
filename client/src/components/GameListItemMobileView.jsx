@@ -1,5 +1,6 @@
 import { useState } from "react";
 import banner from "../assets/steam-banner.png"
+import { updateGameStatus } from "../helpers/gameStatusUpdater";
 
 export const GameListItemMobileView = (props) => {
 
@@ -25,10 +26,11 @@ export const GameListItemMobileView = (props) => {
                 // name={`${props.gameName.replaceAll(' ', '-').toLowerCase()}-selector`} 
                 // id={`${props.gameName.replaceAll(' ', '-').toLowerCase()}-selector`} 
                 value={gameStatus} 
-                onChange={(event=>{setGameStatus(event.target.value)})}
+                onChange={(event=>{setGameStatus(event.target.value); updateGameStatus(props.gameId, event.target.value)})}
                 >
                   <option>{gameStatus}</option>
                   <option value="Current">Current</option>
+                  <option value="Completed">Completed</option>
                   {/* <option value="On Hold">On Hold</option> */}
                   <option value="Dropped">Dropped</option>
                   <option value="Planned">Planned</option>

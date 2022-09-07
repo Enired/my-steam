@@ -4,7 +4,7 @@ import { GameListItemMobileView } from "./GameListItemMobileView";
 import ArrowBackSharpIcon from '@mui/icons-material/ArrowBackSharp';
 
 export const GamePage = (props) => {
-  
+
   const gamesList = props.gamesList
 
   //Capitalize the first letter of the game status.
@@ -25,6 +25,7 @@ export const GamePage = (props) => {
     
               return (<GameListItemMobileView
                 key={game.id}
+                gameId={game.id}
                 gamePic={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.id}/header.jpg`}
                 gameName={game.game_name}
                 gameStatus={capStatus(game.status)}
