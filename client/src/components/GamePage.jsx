@@ -8,7 +8,7 @@ export const GamePage = (props) => {
   const appid = 3830;
   const hash = `460b6471db7d83ee6943c1a87f7a9f2898634952`;
   const gameStatus = 'Plan to play';
-  const gamesList = props.gamesListAll
+  const gamesList = props.gamesList
 
 
   // const gamesList = [
@@ -69,9 +69,9 @@ export const GamePage = (props) => {
           {gamesList.map(game => {
     
               return (<GameListItemMobileView
-                key={game.appid}
-                gamePic={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg`}
-                gameName={game.name}
+                key={game.id}
+                gamePic={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.id}/header.jpg`}
+                gameName={game.game_name}
                 gameStatus={'game.status'}
               />
                 // <tr className="game-list-table-data" key={game.appid}>

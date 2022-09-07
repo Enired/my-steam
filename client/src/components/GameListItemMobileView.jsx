@@ -26,8 +26,8 @@ export const GameListItemMobileView = (props) => {
 
                 <select 
                 className="game-list-status-selector" 
-                name={`${props.gameName.replaceAll(' ', '-').toLowerCase()}-selector`} 
-                id={`${props.gameName.replaceAll(' ', '-').toLowerCase()}-selector`} 
+                // name={`${props.gameName.replaceAll(' ', '-').toLowerCase()}-selector`} 
+                // id={`${props.gameName.replaceAll(' ', '-').toLowerCase()}-selector`} 
                 value={gameStatus} 
                 onChange={(event=>{setGameStatus(event.target.value)})}
                 >

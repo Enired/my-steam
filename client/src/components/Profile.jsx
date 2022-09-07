@@ -83,7 +83,7 @@ export const Profile = (props) => {
         <a href={officialSteamProfile} className="link">Official Steam Profile</a>
       </div>
       <div className="official-steam-profile-link">
-        <a onClick={() => { props.switchView(); }} className="link">See All Games</a>
+        <a onClick={() => { props.switchViewAll(); }} className="link">See All Games</a>
       </div>
 
       <div className="lists">
@@ -91,7 +91,7 @@ export const Profile = (props) => {
           Current Games
           <ul className="game-list">
             {(props.gamesListCurrent).map((game) => {
-              return <li className="game-list-item">{game.game_name}</li>;
+              return <li key={game.id} className="game-list-item">{game.game_name}</li>;
             })}
             {props.gamesListCurrent.length > 5 && <li className="game-list-item game-list-see-more">See More</li>}
           </ul>
@@ -101,7 +101,7 @@ export const Profile = (props) => {
           Completed Games
           <ul className="game-list">
             {(props.gamesListCompleted.slice(0, 5)).map((game) => {
-              return <li className="game-list-item">{game.game_name}</li>;
+              return <li key={game.id} className="game-list-item">{game.game_name}</li>;
             })}
             {props.gamesListCompleted.length > 5 && <li className="game-list-item game-list-see-more">See More</li>}
           </ul>
@@ -111,7 +111,7 @@ export const Profile = (props) => {
           Dropped Games
           <ul className="game-list">
             {(props.gamesListDropped.slice(0, 5)).map((game) => {
-              return <li className="game-list-item">{game.game_name}</li>;
+              return <li key={game.id} className="game-list-item">{game.game_name}</li>;
             })}
             {props.gamesListDropped.length > 5 && <li className="game-list-item game-list-see-more">See More</li>}
 
@@ -122,7 +122,7 @@ export const Profile = (props) => {
           Planned Games
           <ul className="game-list">
             {(props.gamesListPlanned.slice(0, 5)).map((game) => {
-              return <li className="game-list-item">{game.game_name}</li>;
+              return <li key={game.id} className="game-list-item">{game.game_name}</li>;
             })}
             {props.gamesListPlanned.length > 5 && <li className="game-list-item game-list-see-more">See More</li>}
           </ul>

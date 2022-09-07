@@ -90,5 +90,26 @@ router.get('/planned', (req,res) => {
 
   })
 })
+router.get('/all', (req,res) => {
+  const client = new pg.Client(dbConnectionString);
+  client.connect((err)=>{
+    if (err) {
+      return console.error('couldn\'t connect to postgres', err);
+    }
+
+    client.query(
+      `SELECT * FROM "games";`, (err, result) => {
+        if (err) {
+          return console.error('error running query', err);
+        }
+        console.log(result)
+        res.json(result.rows)
+        client.end()
+
+      }
+    );
+
+  })
+})
 
 module.exports = router;
