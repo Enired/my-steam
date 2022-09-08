@@ -52,11 +52,15 @@
       color: #57cbde;
     }
   }
+  .see-all-games-link{
+    cursor: pointer;
+  }
 
   .lists{
     display: flex;
     flex-direction: column;
     width: 100vw;
+    cursor: default;
 
     .games{
       font-size: 1.3rem;
@@ -82,7 +86,11 @@
         }
         
         .game-list-see-more{
-          color: #57cbde
+          color: #57cbde;
+          cursor: pointer;
+        }
+        .game-list-no-games{
+          color:#898989;
         }
       }
     }

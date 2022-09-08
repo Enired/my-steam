@@ -82,7 +82,7 @@ export const Profile = (props) => {
       <div className="official-steam-profile-link">
         <a href={officialSteamProfile} className="link">Official Steam Profile</a>
       </div>
-      <div className="official-steam-profile-link">
+      <div className="official-steam-profile-link see-all-games-link">
         <a onClick={() => { props.switchViewAll(); }} className="link">See All Games</a>
       </div>
 
@@ -95,7 +95,7 @@ export const Profile = (props) => {
             })}
             {props.gamesListCurrent.length > 0 ?
               <li className="game-list-item game-list-see-more" onClick={props.switchViewCurrent}>See More</li> :
-              <li className="game-list-item game-list-see-more">No games</li>
+              <li className="game-list-item game-list-no-games">No games</li>
             }
           </ul>
         </div>
@@ -108,7 +108,7 @@ export const Profile = (props) => {
             })}
             {props.gamesListCompleted.length > 0 ?
               <li className="game-list-item game-list-see-more" onClick={props.switchViewCompleted}>See More</li> :
-              <li className="game-list-item game-list-see-more">No games</li>
+              <li className="game-list-item game-list-no-games">No games</li>
             }
           </ul>
         </div>
@@ -120,7 +120,8 @@ export const Profile = (props) => {
               return <li key={game.id} className="game-list-item">{game.game_name}</li>;
             })}
             {props.gamesListDropped.length > 0 ?
-            <li className="game-list-item game-list-see-more" onClick={props.switchViewDropped}>See More</li>:              <li className="game-list-item game-list-see-more">No games</li>
+            <li className="game-list-item game-list-see-more" onClick={props.switchViewDropped}>See More</li>:             
+            <li className="game-list-item game-list-no-games">No games</li>
             }
           </ul>
         </div>
@@ -132,7 +133,8 @@ export const Profile = (props) => {
               return <li key={game.id} className="game-list-item">{game.game_name}</li>;
             })}
             {props.gamesListPlanned.length > 0 ?
-            <li className="game-list-item game-list-see-more" onClick={props.switchViewPlanned}>See More</li>:              <li className="game-list-item game-list-see-more">No games</li>
+            <li className="game-list-item game-list-see-more" onClick={props.switchViewPlanned}>See More</li>:              
+            <li className="game-list-item game-list-no-games">No games</li>
             }
           </ul>
         </div>
