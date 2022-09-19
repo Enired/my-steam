@@ -6,11 +6,12 @@ import axios from 'axios';
 import "./App.css"
 import { GamePage } from './components/GamePage';
 import { useState, useEffect } from 'react';
+import { LoginPage } from './components/LoginPage';
 function App() {
   ////////////////
   // Visibility //
   ////////////////
-  const [profileHidden, setProfileHidden] = useState(false)
+  const [profileHidden, setProfileHidden] = useState(true)
   const [gamePageAllHidden, setGamePageAllHidden] = useState(true)
   const [gamePageCurrentHidden, setGamePageCurrentHidden] = useState(true)
   const [gamePageCompletedHidden, setGamePageCompletedHidden] = useState(true)
@@ -98,14 +99,15 @@ function App() {
       switchViewCompleted={switchViewCompleted}
       switchViewDropped={switchViewDropped}
       switchViewPlanned={switchViewPlanned}
-
+      
       gamesListAll={gamesListAll}
       gamesListCurrent={gamesListCurrent}
       gamesListCompleted={gamesListCompleted}
       gamesListDropped={gamesListDropped}
       gamesListPlanned={gamesListPlanned}
       />
-      }
+    }
+      <LoginPage />
 
       {/* //Game page for All Games */}
       {!gamePageAllHidden && <GamePage id="game-page-all" gamesList={gamesListAll} switchView={switchViewAll}/>}
