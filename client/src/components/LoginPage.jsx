@@ -10,9 +10,9 @@ export const LoginPage = (props) => {
         <input type="password" name="login-password" id="login-password"/>    
       </div>
       <div className="login-buttons">
-        <button>Login</button>
-        <button>Sign-up</button>
-        <button>Forgot Password</button>
+        <button className="action-button" id="login-button">Login</button>
+        <button className="action-button" id="sign-up-button">Sign-up</button>
+        <button className="action-button" id="forgot-password-button">Forgot Password</button>
       </div>
     </div>
   
