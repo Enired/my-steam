@@ -2,18 +2,21 @@
   margin-top: 10vh;
   padding-top: 3vh;
   display: flex;
-  align-content: center;
+  align-items: center;
   flex-direction: column;
   width: 100vw;
   height: 87vh;
   background-color: rgba(24, 24, 24, 0.93);
   color: white;
+  h2{
+    margin-top: 0;
+  }
   .signup-fields{
     display: flex;
     flex-direction: column;
+    align-items: center;
     .signup-field{
-      margin-top: 16px;
-      width: 50%;
+      width: 100%;
       border-radius: 2px;
       color: #fff;
       padding: 10px;
@@ -27,8 +30,10 @@
   .signup-buttons{
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-items: center;
+
     .signup-button{
+      margin-top: 16px;
       position: relative;
       background: linear-gradient(90deg, #06BFFF 0%, #2D73FF 100%);
       border-radius: 2px;
