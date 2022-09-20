@@ -3,32 +3,14 @@ import "../styles/SignupPage.scss"
 export const SignupPage = (props) => {
   return (
     <div className="signup-page">
-      Hello
-      Hello
-      Hello
-      Hello
-      Hello
-      Hello
-      Hello
-      Hello
-      Hello
-      Hello
-      Hello
-      Hello
-      Hello
-      Hello
-      Hello
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      Hello
-      Hello
-      Hello
-      Hello
-      Hello
+      <div className="signup-fields">
+        <input type="text" className="signup-field" id="username-creation" />
+        <input type="text" className="signup-field" id="password-creation" />
+      </div>
+      <div className="signup-buttons">
+        <button className="signup-button">Create Account</button>
+        <button className="signup-button">Reset</button>
+      </div>
     </div>
   )
 }
