@@ -28,7 +28,7 @@ export const Navbar = (props) => {
       >
         <ul id="drawer-menu-items">
           {!loggedIn ? 
-          <li className="drawer-menu-item">
+          <li className="drawer-menu-item" onClick={()=>{props.switchViewLogout(); setAnchorEl(null)}}>
             <LoginSharpIcon className="drawer-menu-item-icon"/>
             <p className="drawer-menu-item-icon">Login</p>
           </li>

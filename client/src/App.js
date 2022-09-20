@@ -7,12 +7,13 @@ import "./App.css"
 import { GamePage } from './components/GamePage';
 import { useState, useEffect } from 'react';
 import { LoginPage } from './components/LoginPage';
+import { SignupPage } from './components/SignupPage';
 function App() {
   ////////////////
   // Visibility //
   ////////////////
   const [profileHidden, setProfileHidden] = useState(true)
-  const [loginHidden, setLoginHidden] = useState(false)
+  const [loginHidden, setLoginHidden] = useState(true)
   const [gamePageAllHidden, setGamePageAllHidden] = useState(true)
   const [gamePageCurrentHidden, setGamePageCurrentHidden] = useState(true)
   const [gamePageCompletedHidden, setGamePageCompletedHidden] = useState(true)
@@ -117,6 +118,8 @@ function App() {
       {/* //Login Page View */}
       {!loginHidden && <LoginPage switchViewLogin={switchViewLoginProfile} setLoggedIn={setLoggedIn}/>}
 
+
+
       {/* //Profile Page View */}
       {!profileHidden && 
       <Profile 
@@ -132,7 +135,10 @@ function App() {
       gamesListDropped={gamesListDropped}
       gamesListPlanned={gamesListPlanned}
       />
-      }
+    }
+
+      {/* //Signup Page View */}
+      <SignupPage/>
 
 
       {/* //Game page for All Games */}
