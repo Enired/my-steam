@@ -12,6 +12,7 @@ function App() {
   // Visibility //
   ////////////////
   const [profileHidden, setProfileHidden] = useState(true)
+  const [loginHidden, setLoginHidden] = useState(false)
   const [gamePageAllHidden, setGamePageAllHidden] = useState(true)
   const [gamePageCurrentHidden, setGamePageCurrentHidden] = useState(true)
   const [gamePageCompletedHidden, setGamePageCompletedHidden] = useState(true)
@@ -88,10 +89,19 @@ function App() {
     setGamePagePlannedHidden(!gamePagePlannedHidden)
     window.scrollTo(0,0);
   }
+  const switchViewLoginToProfile = () => {
+    setProfileHidden(!profileHidden)
+    setLoginHidden(!loginHidden)
+    window.scrollTo(0,0);
+  }
 
   return (
     <div className="App">
       <Navbar />
+      {/* //Login Page View */}
+      {!loginHidden && <LoginPage switchViewLogin={switchViewLoginToProfile}/>}
+
+      {/* //Profile Page View */}
       {!profileHidden && 
       <Profile 
       switchViewAll={switchViewAll} 
@@ -106,8 +116,8 @@ function App() {
       gamesListDropped={gamesListDropped}
       gamesListPlanned={gamesListPlanned}
       />
-    }
-      <LoginPage />
+      }
+
 
       {/* //Game page for All Games */}
       {!gamePageAllHidden && <GamePage id="game-page-all" gamesList={gamesListAll} switchView={switchViewAll}/>}

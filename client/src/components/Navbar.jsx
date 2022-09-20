@@ -13,7 +13,7 @@ export const Navbar = (props) => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const loggedIn = false
+  const loggedIn = true
   return(
     <div id="navbar">
       <MenuIcon id="nav-menu"

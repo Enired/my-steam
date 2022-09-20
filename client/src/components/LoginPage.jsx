@@ -10,7 +10,7 @@ export const LoginPage = (props) => {
         <input type="password" name="login-password" id="login-password"/>    
       </div>
       <div className="login-buttons">
-        <button className="action-button" id="login-button">Login</button>
+        <button className="action-button" id="login-button" onClick={()=>props.switchViewLogin()}>Login</button>
         <button className="action-button" id="sign-up-button">Sign-up</button>
         <button className="action-button" id="forgot-password-button">Forgot Password</button>
       </div>
