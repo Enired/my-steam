@@ -13,7 +13,7 @@ export const Navbar = (props) => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const loggedIn = true
+  const loggedIn = props.loggedIn
   return(
     <div id="navbar">
       <MenuIcon id="nav-menu"
@@ -29,7 +29,7 @@ export const Navbar = (props) => {
         <ul id="drawer-menu-items">
           {!loggedIn ? 
           <li className="drawer-menu-item">
-            <LoginSharpIcon className="drawer-menu-item-icon"/>
+            <LoginSharpIcon className="drawer-menu-item-icon" onClick={()=>{props.setLoggedIn(true)}}/>
             <p className="drawer-menu-item-icon">Login</p>
           </li>
           :
@@ -42,7 +42,7 @@ export const Navbar = (props) => {
               <PlaylistAddSharpIcon className="drawer-menu-item-icon"/>
               <p className="drawer-menu-item-icon">Add to List</p>
             </li>
-            <li className="drawer-menu-item">
+            <li className="drawer-menu-item" onClick={()=>{props.setLoggedIn(false); props.switchViewLogout(); setAnchorEl(null);}}>
               <LogoutSharpIcon className="drawer-menu-item-icon"/>
               <p className="drawer-menu-item-icon">Logout</p>
             </li>

@@ -20,6 +20,12 @@ function App() {
   const [gamePagePlannedHidden, setGamePagePlannedHidden] = useState(true)
   ////////////////////////////////////////////////////////////////
 
+  /////////////////////
+  // Logged In State //
+  /////////////////////
+
+  const [loggedIn, setLoggedIn] = useState(false)
+
   ////////////////
   // Game Lists //
   ////////////////
@@ -62,7 +68,7 @@ function App() {
 
 
 
-  }, [profileHidden]);
+  }, [profileHidden, loggedIn]);
 
   const switchViewAll = () =>{
     setProfileHidden(!profileHidden)
@@ -89,17 +95,27 @@ function App() {
     setGamePagePlannedHidden(!gamePagePlannedHidden)
     window.scrollTo(0,0);
   }
-  const switchViewLoginToProfile = () => {
+  const switchViewLoginProfile = () => {
     setProfileHidden(!profileHidden)
     setLoginHidden(!loginHidden)
+    window.scrollTo(0,0);
+  }
+  const switchViewLogout = () => {
+    setProfileHidden(true)
+    setLoginHidden(false)
+    setGamePageAllHidden(true)
+    setGamePageCurrentHidden(true)
+    setGamePageCompletedHidden(true)
+    setGamePageDroppedHidden(true)
+    setGamePagePlannedHidden(true)
     window.scrollTo(0,0);
   }
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar loggedIn={loggedIn}  setLoggedIn={setLoggedIn} switchViewLogout={switchViewLogout} />
       {/* //Login Page View */}
-      {!loginHidden && <LoginPage switchViewLogin={switchViewLoginToProfile}/>}
+      {!loginHidden && <LoginPage switchViewLogin={switchViewLoginProfile} setLoggedIn={setLoggedIn}/>}
 
       {/* //Profile Page View */}
       {!profileHidden && 
