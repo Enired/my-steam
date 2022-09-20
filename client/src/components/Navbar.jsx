@@ -29,7 +29,7 @@ export const Navbar = (props) => {
         <ul id="drawer-menu-items">
           {!loggedIn ? 
           <li className="drawer-menu-item">
-            <LoginSharpIcon className="drawer-menu-item-icon" onClick={()=>{props.setLoggedIn(true)}}/>
+            <LoginSharpIcon className="drawer-menu-item-icon"/>
             <p className="drawer-menu-item-icon">Login</p>
           </li>
           :
