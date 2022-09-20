@@ -1,3 +1,5 @@
+import "../styles/SignupPage.scss"
+
 export const SignupPage = (props) => {
   return (
     <div className="signup-page">
