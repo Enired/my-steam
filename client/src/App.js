@@ -13,7 +13,8 @@ function App() {
   // Visibility //
   ////////////////
   const [profileHidden, setProfileHidden] = useState(true)
-  const [loginHidden, setLoginHidden] = useState(true)
+  const [loginHidden, setLoginHidden] = useState(false)
+  const [signupHidden, setSignupHidden] = useState(true)
   const [gamePageAllHidden, setGamePageAllHidden] = useState(true)
   const [gamePageCurrentHidden, setGamePageCurrentHidden] = useState(true)
   const [gamePageCompletedHidden, setGamePageCompletedHidden] = useState(true)
@@ -109,6 +110,18 @@ function App() {
     setGamePageCompletedHidden(true)
     setGamePageDroppedHidden(true)
     setGamePagePlannedHidden(true)
+    setSignupHidden(true)
+    window.scrollTo(0,0);
+  }
+  const switchViewSignup = () => {
+    setProfileHidden(true)
+    setLoginHidden(true)
+    setGamePageAllHidden(true)
+    setGamePageCurrentHidden(true)
+    setGamePageCompletedHidden(true)
+    setGamePageDroppedHidden(true)
+    setGamePagePlannedHidden(true)
+    setSignupHidden(false)
     window.scrollTo(0,0);
   }
 
@@ -116,7 +129,12 @@ function App() {
     <div className="App">
       <Navbar loggedIn={loggedIn}  setLoggedIn={setLoggedIn} switchViewLogout={switchViewLogout} />
       {/* //Login Page View */}
-      {!loginHidden && <LoginPage switchViewLogin={switchViewLoginProfile} setLoggedIn={setLoggedIn}/>}
+      {!loginHidden && 
+      <LoginPage 
+      switchViewLogin={switchViewLoginProfile} 
+      setLoggedIn={setLoggedIn}
+      switchViewSignup={switchViewSignup}
+      />}
 
 
 
@@ -138,7 +156,7 @@ function App() {
     }
 
       {/* //Signup Page View */}
-      <SignupPage/>
+      {!signupHidden && <SignupPage/>}
 
 
       {/* //Game page for All Games */}

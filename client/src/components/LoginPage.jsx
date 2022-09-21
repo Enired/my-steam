@@ -14,6 +14,11 @@ export const LoginPage = (props) => {
     return false
   }
 
+  const login= () => {
+    props.switchViewLogin();
+    props.setLoggedIn(true);
+  }
+
 
   return (
     <div className="login">
@@ -24,8 +29,8 @@ export const LoginPage = (props) => {
         <input type="password" name="login-password" id="login-password" value={password} onChange={(event)=>{setPassword(event.target.value)}}/>    
       </div>
       <div className="login-buttons">
-        <button className="action-button" id="login-button" onClick={()=>{(!checkIfBlank(username) & !checkIfBlank(password)) && props.switchViewLogin(); props.setLoggedIn(true)}}>Login</button>
-        <button className="action-button" id="sign-up-button">Sign-up</button>
+        <button className="action-button" id="login-button" onClick={()=>{(!checkIfBlank(username) & !checkIfBlank(password)) && login()}}>Login</button>
+        <button className="action-button" id="sign-up-button" onClick={()=>{props.switchViewSignup()}}>Sign-up</button>
         <button className="action-button" id="forgot-password-button">Forgot Password</button>
       </div>
     </div>
