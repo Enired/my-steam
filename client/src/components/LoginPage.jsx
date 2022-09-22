@@ -1,3 +1,4 @@
+import { Modal } from "@mui/material";
 import { useState } from "react";
 import "../styles/LoginPage.scss"
 
@@ -5,6 +6,7 @@ export const LoginPage = (props) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [open, setOpen] = useState(false)
 
   const checkIfBlank = (textInput) => {
     if(!textInput){
@@ -14,7 +16,7 @@ export const LoginPage = (props) => {
     return false
   }
 
-  const login= () => {
+  const login = () => {
     props.switchViewLogin();
     props.setLoggedIn(true);
   }
@@ -29,10 +31,12 @@ export const LoginPage = (props) => {
         <input type="password" name="login-password" id="login-password" value={password} onChange={(event)=>{setPassword(event.target.value)}}/>    
       </div>
       <div className="login-buttons">
-        <button className="action-button" id="login-button" onClick={()=>{(!checkIfBlank(username) & !checkIfBlank(password)) && login()}}>Login</button>
+        <button className="action-button" id="login-button" onClick={(event)=>{(!checkIfBlank(username) & !checkIfBlank(password)) ? login() : setOpen(true)}}>Login</button>
         <button className="action-button" id="sign-up-button" onClick={()=>{props.switchViewSignup()}}>Sign-up</button>
         <button className="action-button" id="forgot-password-button">Forgot Password</button>
       </div>
+
+      <Modal className="another" open={open} onClose={()=>setOpen(false)}><p className="test">Please ensure all fields are filled.</p></Modal>
     </div>
   
   )
