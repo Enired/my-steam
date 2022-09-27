@@ -24,7 +24,7 @@ export const LoginPage = (props) => {
 
   return (
     <div className="login">
-      <h2>Sign-up</h2>
+      <h2>Login</h2>
       <div className="login-text">
         <label htmlFor="login-name">Username</label>
         <input type="text" name="login-name" id="login-name" value={username} onChange={(event)=>{setUsername(event.target.value)}}/>
