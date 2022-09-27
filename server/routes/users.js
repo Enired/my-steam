@@ -40,9 +40,10 @@ router.post('/new', (req, res, next)=>{
     client.query(newUserQuery, [username, password, steamIdNumber])
     .then(()=>{
       client.end()
+      res.send('New user added')
     })
+    .catch(err => {res.status(400); res.send(err.code); client.end()})
   })
-  res.send('New user added')
 
 })
 

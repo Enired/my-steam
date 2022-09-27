@@ -1,9 +1,28 @@
 import { useState } from "react";
 import "../styles/SignupPage.scss"
 import axios from 'axios';
+import { Modal } from "@mui/material";
 
 export const SignupPage = (props) => {
   const [userInfo, setUserInfo] = useState({username: '', password: '', steamIdNumber: 0})
+  const [openDuplicateUsernameError, setOpenDuplicateUsernameError] = useState(false)
+  const [openEmptyFieldsError, setOpenEmptyFieldsError] = useState(false)
+
+  const signup = (userInfo) => {
+    console.log(userInfo); 
+    if(!userInfo.username || !userInfo.password || !userInfo.steamIdNumber){
+      setOpenEmptyFieldsError(true)
+      return
+    }
+    axios.post('/users/new', {username: userInfo.username, password: userInfo.password, steamIdNumber: userInfo.steamIdNumber} )
+    .then((res) => {console.log(res)})
+    .catch((err)=>{
+      if(err.response.data === 23505){
+        console.log('Username already taken.')
+        setOpenDuplicateUsernameError(true)
+      }
+    })
+  }
   return (
     <div className="signup-page">
       <h2>Sign-up</h2>
@@ -20,9 +39,12 @@ export const SignupPage = (props) => {
 
       </div>
       <div className="signup-buttons">
-        <button className="signup-button" onClick={()=>{console.log(userInfo); axios.post('/users/new', {username: userInfo.username, password: userInfo.password, steamIdNumber: userInfo.steamIdNumber} )}}>Create Account</button>
+        <button className="signup-button" onClick={()=>{signup(userInfo)}}>Create Account</button>
         <button className="signup-button" onClick={(event)=>setUserInfo({username: '', password: '', steamIdNumber: 0})}>Reset</button>
       </div>
+
+      <Modal className="another" open={openDuplicateUsernameError} onClose={()=>setOpenDuplicateUsernameError(false)}><div className="error-message-modal">Username already taken.</div></Modal>
+      <Modal className="another" open={openEmptyFieldsError} onClose={()=>setOpenEmptyFieldsError(false)}><div className="error-message-modal">All fields must be entered.</div></Modal>
     </div>
   )
 }
