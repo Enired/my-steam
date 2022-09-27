@@ -37,7 +37,7 @@ export const LoginPage = (props) => {
         <button className="action-button" id="forgot-password-button">Forgot Password</button>
       </div>
 
-      <Modal className="another" open={open} onClose={()=>setOpen(false)}><p className="test">Please ensure all fields are filled.</p></Modal>
+      <Modal className="another" open={open} onClose={()=>setOpen(false)}><div className="error-message-modal">Please ensure all fields are filled.</div></Modal>
     </div>
   
   )
