@@ -2,11 +2,15 @@
   margin-top: 10vh;
   padding-top: 3vh;
   display: flex;
-  align-content: center;
+  align-items: center;
   flex-direction: column;
   width: 100vw;
   height: 87vh;
   background-color: rgba(24, 24, 24, 0.93);
+  color: white;
+  h2{
+    margin-top: 0;
+  }
 }
 .another{
   display: flex;
