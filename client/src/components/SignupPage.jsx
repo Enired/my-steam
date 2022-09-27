@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/SignupPage.scss"
+import axios from 'axios';
 
 export const SignupPage = (props) => {
   const [userInfo, setUserInfo] = useState({username: '', password: '', steamIdNumber: 0})
@@ -19,7 +20,7 @@ export const SignupPage = (props) => {
 
       </div>
       <div className="signup-buttons">
-        <button className="signup-button" onClick={()=>console.log(userInfo)}>Create Account</button>
+        <button className="signup-button" onClick={()=>{console.log(userInfo); axios.post('/users/new', {username: userInfo.username, password: userInfo.password, steamIdNumber: userInfo.steamIdNumber} )}}>Create Account</button>
         <button className="signup-button">Reset</button>
       </div>
     </div>

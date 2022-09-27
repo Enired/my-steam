@@ -27,16 +27,22 @@ const dbConnectionString = process.env.ELEPHANT_DB_URL;
 
 //Creating a new user in the table
 router.post('/new', (req, res, next)=>{
+  const userInfo = req.body
+  const username = userInfo.username
+  const password = userInfo.password
+  const steamIdNumber = userInfo.steamIdNumber
   const client = new pg.Client(dbConnectionString);
-  // client.connect((err) => {
-  //   if(err){
-  //     return console.error('couldn\'t connect to postgres', err);
-  //   }
-  //   const newUserQuery = `INSERT INTO "users" (username, password, steam_id_number) VALUES ($1, $2, $3);`
-  //   client.query(newUserQuery, [username])
-  // })
-  console.log('req',req)
-  console.log('res',res)
+  client.connect((err) => {
+    if(err){
+      return console.error('couldn\'t connect to postgres', err);
+    }
+    const newUserQuery = `INSERT INTO "users" (username, password, steam_id_number) VALUES ($1, $2, $3);`
+    client.query(newUserQuery, [username, password, steamIdNumber])
+    .then(()=>{
+      client.end()
+    })
+  })
+  res.send('New user added')
 
 })
 
