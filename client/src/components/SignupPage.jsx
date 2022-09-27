@@ -21,7 +21,7 @@ export const SignupPage = (props) => {
       </div>
       <div className="signup-buttons">
         <button className="signup-button" onClick={()=>{console.log(userInfo); axios.post('/users/new', {username: userInfo.username, password: userInfo.password, steamIdNumber: userInfo.steamIdNumber} )}}>Create Account</button>
-        <button className="signup-button">Reset</button>
+        <button className="signup-button" onClick={(event)=>setUserInfo({username: '', password: '', steamIdNumber: 0})}>Reset</button>
       </div>
     </div>
   )
