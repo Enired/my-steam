@@ -7,6 +7,7 @@ export const SignupPage = (props) => {
   const [userInfo, setUserInfo] = useState({username: '', password: '', steamIdNumber: 0})
   const [openDuplicateUsernameError, setOpenDuplicateUsernameError] = useState(false)
   const [openEmptyFieldsError, setOpenEmptyFieldsError] = useState(false)
+  const [accountCreatedMessage, setAccountCreatedMessage] = useState(false)
 
   const signup = (userInfo) => {
     console.log(userInfo); 
@@ -16,6 +17,7 @@ export const SignupPage = (props) => {
     }
     axios.post('/users/new', {username: userInfo.username, password: userInfo.password, steamIdNumber: userInfo.steamIdNumber} )
     .then((res) => {console.log(res)})
+    .then(()=>{setAccountCreatedMessage(true)})
     .catch((err)=>{
       if(err.response.data === 23505){
         console.log('Username already taken.')
@@ -45,6 +47,7 @@ export const SignupPage = (props) => {
 
       <Modal className="another" open={openDuplicateUsernameError} onClose={()=>setOpenDuplicateUsernameError(false)}><div className="error-message-modal">Username already taken.</div></Modal>
       <Modal className="another" open={openEmptyFieldsError} onClose={()=>setOpenEmptyFieldsError(false)}><div className="error-message-modal">All fields must be entered.</div></Modal>
+      <Modal className="another" open={accountCreatedMessage} onClose={()=>{setAccountCreatedMessage(false); props.switchViewLogout()}}><div className="error-message-modal">Account created. Please login.</div></Modal>
     </div>
   )
 }

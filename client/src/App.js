@@ -156,7 +156,7 @@ function App() {
     }
 
       {/* //Signup Page View */}
-      {!signupHidden && <SignupPage/>}
+      {!signupHidden && <SignupPage switchViewLogout={switchViewLogout}/>}
 
 
       {/* //Game page for All Games */}
