@@ -24,7 +24,6 @@ export const LoginPage = (props) => {
           document.cookie = res.data[0].steam_id_number;
           props.switchViewLogin();
           props.setLoggedIn(true);
-          console.log('Correct credentials');
         }
         else {
           console.log('Wrong Credentials');
