@@ -42,7 +42,7 @@ export const Navbar = (props) => {
               <PlaylistAddSharpIcon className="drawer-menu-item-icon"/>
               <p className="drawer-menu-item-icon">Add to List</p>
             </li>
-            <li className="drawer-menu-item" onClick={()=>{props.setLoggedIn(false); props.switchViewLogout(); setAnchorEl(null);}}>
+            <li className="drawer-menu-item" onClick={()=>{props.setLoggedIn(false); props.switchViewLogout(); setAnchorEl(null); document.cookie=null;}}>
               <LogoutSharpIcon className="drawer-menu-item-icon"/>
               <p className="drawer-menu-item-icon">Logout</p>
             </li>

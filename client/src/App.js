@@ -45,7 +45,7 @@ function App() {
       .then((res) => {
         const player = res.data.data.player;
         setPlayer(player);
-        document.cookie=player.id
+        // document.cookie=player.id
       })
 
 
