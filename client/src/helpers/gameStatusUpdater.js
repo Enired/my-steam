@@ -4,8 +4,9 @@ export const updateGameStatus = (appid, status) => {
   
   switch (status.toLowerCase()) {
     case 'current':
-      axios.put(`/games/${appid}/current`)
-      .then(res=>{console.log(res);console.log(appid)})
+      // axios.put(`/games/${appid}/current`)
+      // .then(res=>{console.log(res);console.log(appid)})
+      console.log(appid)
       break;
     case 'completed':
       axios.put(`/games/${appid}/completed`)

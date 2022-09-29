@@ -4,7 +4,7 @@ const pg = require('pg');
 const dbConnectionString = process.env.ELEPHANT_DB_URL;
 
 //Returning list of games in DB that are currently being played
-router.get('/current', (req,res) => {
+router.get('/current/:username', (req,res) => {
   const client = new pg.Client(dbConnectionString);
   client.connect((err)=>{
     if (err) {
@@ -12,7 +12,12 @@ router.get('/current', (req,res) => {
     }
 
     client.query(
-      `SELECT * FROM "games" where status = 'current';`, (err, result) => {
+      `Select game_list_item_id, game_name, game_status, steam_app_id from "Games"
+      JOIN "Game_List_Items" ON "Games".game_id = "Game_List_Items".game_id
+      JOIN "Game_Lists" ON "Game_Lists".game_list_id = "Game_List_Items".list_id
+      JOIN "Users" ON "Users".user_id = "Game_Lists".user_id
+      WHERE "Users".username = $1 AND "Game_List_Items".game_status = 'current'
+      ORDER BY "Games".game_name;`, [req.params.username],(err, result) => {
         if (err) {
           return console.error('error running query', err);
         }
@@ -27,7 +32,7 @@ router.get('/current', (req,res) => {
 })
 
 //Returning list of games in DB that are completed.
-router.get('/completed', (req,res) => {
+router.get('/completed/:username', (req,res) => {
   const client = new pg.Client(dbConnectionString);
   client.connect((err)=>{
     if (err) {
@@ -35,7 +40,12 @@ router.get('/completed', (req,res) => {
     }
 
     client.query(
-      `SELECT * FROM "games" where status = 'completed';`, (err, result) => {
+      `Select game_list_item_id, game_name, game_status, steam_app_id from "Games"
+      JOIN "Game_List_Items" ON "Games".game_id = "Game_List_Items".game_id
+      JOIN "Game_Lists" ON "Game_Lists".game_list_id = "Game_List_Items".list_id
+      JOIN "Users" ON "Users".user_id = "Game_Lists".user_id
+      WHERE "Users".username = $1 AND "Game_List_Items".game_status = 'completed'
+      ORDER BY "Games".game_name;`, [req.params.username],(err, result) => {
         if (err) {
           return console.error('error running query', err);
         }
@@ -48,7 +58,7 @@ router.get('/completed', (req,res) => {
 
   })
 })
-router.get('/dropped', (req,res) => {
+router.get('/dropped/:username', (req,res) => {
   const client = new pg.Client(dbConnectionString);
   client.connect((err)=>{
     if (err) {
@@ -56,7 +66,12 @@ router.get('/dropped', (req,res) => {
     }
 
     client.query(
-      `SELECT * FROM "games" where status = 'dropped';`, (err, result) => {
+      `Select game_list_item_id, game_name, game_status, steam_app_id from "Games"
+      JOIN "Game_List_Items" ON "Games".game_id = "Game_List_Items".game_id
+      JOIN "Game_Lists" ON "Game_Lists".game_list_id = "Game_List_Items".list_id
+      JOIN "Users" ON "Users".user_id = "Game_Lists".user_id
+      WHERE "Users".username = $1 AND "Game_List_Items".game_status = 'dropped'
+      ORDER BY "Games".game_name;`, [req.params.username],(err, result) => {
         if (err) {
           return console.error('error running query', err);
         }
@@ -77,11 +92,12 @@ router.get('/planned/:username', (req,res) => {
     }
 
     client.query(
-      `Select game_name, game_status, steam_app_id from "Games"
+      `Select game_list_item_id, game_name, game_status, steam_app_id from "Games"
       JOIN "Game_List_Items" ON "Games".game_id = "Game_List_Items".game_id
       JOIN "Game_Lists" ON "Game_Lists".game_list_id = "Game_List_Items".list_id
       JOIN "Users" ON "Users".user_id = "Game_Lists".user_id
-      WHERE "Users".username = $1 AND "Game_List_Items".game_status = 'planned';`, [req.params.username],(err, result) => {
+      WHERE "Users".username = $1 AND "Game_List_Items".game_status = 'planned'
+      ORDER BY "Games".game_name;`, [req.params.username],(err, result) => {
         if (err) {
           return console.error('error running query', err);
         }
@@ -94,15 +110,19 @@ router.get('/planned/:username', (req,res) => {
 
   })
 })
-router.get('/all', (req,res) => {
+router.get('/all/:username', (req,res) => {
   const client = new pg.Client(dbConnectionString);
   client.connect((err)=>{
     if (err) {
       return console.error('couldn\'t connect to postgres', err);
     }
-
     client.query(
-      `SELECT * FROM "games";`, (err, result) => {
+      `Select game_list_item_id, game_name, game_status, steam_app_id from "Games"
+      JOIN "Game_List_Items" ON "Games".game_id = "Game_List_Items".game_id
+      JOIN "Game_Lists" ON "Game_Lists".game_list_id = "Game_List_Items".list_id
+      JOIN "Users" ON "Users".user_id = "Game_Lists".user_id
+      WHERE "Users".username = $1
+      ORDER BY "Games".game_name;`, [req.params.username],(err, result) => {
         if (err) {
           return console.error('error running query', err);
         }

@@ -24,8 +24,8 @@ export const GamePage = (props) => {
           {gamesList.map(game => {
     
               return (<GameListItemMobileView
-                key={game.steam_app_id}
-                gameId={game.id}
+                key={game.game_list_item_id}
+                gameListItemId={game.game_list_item_id}
                 gamePic={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.steam_app_id}/header.jpg`}
                 gameName={game.game_name}
                 gameStatus={capStatus(game.game_status)}

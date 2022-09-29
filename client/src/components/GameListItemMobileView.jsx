@@ -26,7 +26,7 @@ export const GameListItemMobileView = (props) => {
                 // name={`${props.gameName.replaceAll(' ', '-').toLowerCase()}-selector`} 
                 // id={`${props.gameName.replaceAll(' ', '-').toLowerCase()}-selector`} 
                 value={gameStatus} 
-                onChange={(event=>{setGameStatus(event.target.value); updateGameStatus(props.gameId, event.target.value)})}
+                onChange={(event=>{setGameStatus(event.target.value); updateGameStatus(props.gameListItemId, event.target.value)})}
                 >
                   <option>{gameStatus}</option>
                   <option value="Current">Current</option>
