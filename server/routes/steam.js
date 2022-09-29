@@ -68,12 +68,12 @@ router.post('/import-steam-list/:steamIdNumber', (req, res, next) => {
             }
             );
           }
-        );
-      });
-
+          );
+        });
+        
+        return;
       // console.log(req.params.steamIdNumber)
 
-      return;
     })
     .then(() => { res.send('Steam List Importing...'); })
     //Empty catch code block so server doens't crash. Will implement handling later
@@ -81,4 +81,29 @@ router.post('/import-steam-list/:steamIdNumber', (req, res, next) => {
 
 });
 
+
+router.post('/testrun', (req,res)=>{
+  const client = new pg.Client(dbConnectionString);
+  console.log('here')
+  client.connect((err) => {
+    if (err) {
+      return console.error('couldn\'t connect to postgres', err);
+    }
+
+    client.query(
+      `SELECT game_id from "Games" WHERE steam_app_id = 1172470;`
+        , 
+       (err, result) => {
+      if (err) {
+        return console.error('error running query', err);
+      }
+
+      console.log(result)
+      client.end();
+    }
+    );
+
+
+  });
+})
 module.exports = router;
