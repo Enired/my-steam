@@ -56,17 +56,36 @@ router.post('/import-steam-list/:steamIdNumber', (req, res, next) => {
               WHERE NOT EXISTS (
                 SELECT 1 FROM "Games" WHERE steam_app_id = $1);`
                 , 
-              [game.appid, game.name], (err) => {
-              if (err) {
-                return console.error('error running query', err);
-              }
-              counter++;
-              if (counter === array.length) {
-                console.log('Steam List Imported.');
-                client.end();
-              }
-            }
-            );
+              [game.appid, game.name]
+              // , (err) => {
+              // if (err) {
+              //   return console.error('error running query', err);
+              // }
+              // counter++;
+              // if (counter === array.length) {
+              //   console.log('Steam List Imported.');
+              //   client.end();
+              // }
+            // }
+            )
+            .then(()=>{
+              client.query(
+                `INSERT INTO "Game_List_Items"(list_id, game_id) 
+                Select (Select game_list_id from "Game_Lists" where user_id = $1) , (Select game_id from "Games" where steam_app_id = $2)
+              WHERE NOT EXISTS (
+                SELECT 1 FROM "Game_List_Items" WHERE game_id=(Select game_id from "Games" where steam_app_id = $2) AND list_id = $1);`
+                  , 
+                [2, game.appid], (err) => {
+                if (err) {
+                  return console.error('error running query', err);
+                }
+                counter++;
+                if (counter === array.length) {
+                  console.log('Steam List Imported.');
+                  client.end();
+                }
+              })
+            });
           }
           );
         });

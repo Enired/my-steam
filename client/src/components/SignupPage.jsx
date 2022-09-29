@@ -17,7 +17,7 @@ export const SignupPage = (props) => {
     }
 
     //Adds the user to the database
-    axios.post('/users/new', { username: userInfo.username, password: userInfo.password, steamIdNumber: userInfo.steamIdNumber })
+    // axios.post('/users/new', { username: userInfo.username, password: userInfo.password, steamIdNumber: userInfo.steamIdNumber })
       // .then((res) => {console.log(res)})
       //Get the id of the newly created user
       // .then(() => {
@@ -29,6 +29,7 @@ export const SignupPage = (props) => {
       //   console.log(userId);
       // })
       //Inform the user that the account has been created
+    axios.post(`steam/import-steam-list/${userInfo.steamIdNumber}`)
       .then(() => {
         setAccountCreatedMessage(true);
       })
