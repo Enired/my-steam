@@ -28,8 +28,8 @@ router.get('/games', (req, res) => {
 // Import user's game list for sign up. Any games bought after sign up will have to be manually added.
 // Currently fixed to one user. Change to take userID arguement
 // userID arguement will correspond to database user.id. Use that to attach games to user.  
-router.get('/import-steam-list', (req, res, next) => {
-  axios.get(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${steamAPIKey}&steamid=76561198008227465&format=json&include_appinfo=true`)
+router.post('/import-steam-list/:steamIdNumber', (req, res, next) => {
+  axios.get(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${steamAPIKey}&steamid=${req.params.steamIdNumber}&format=json&include_appinfo=true`)
     .then((res) => {
       const client = new pg.Client(dbConnectionString);
       client.connect((err) => {
@@ -37,13 +37,13 @@ router.get('/import-steam-list', (req, res, next) => {
           return console.error('couldn\'t connect to postgres', err);
         }
 
-        client.query(
-          `DROP TABLE IF EXISTS "games"; CREATE TABLE IF NOT EXISTS "games" (id INT, game_name VARCHAR(500), status VARCHAR(200) DEFAULT('Planned'));`, (err) => {
-            if (err) {
-              return console.error('error running query', err);
-            }
-          }
-        );
+        // client.query(
+        //   `DROP TABLE IF EXISTS "games"; CREATE TABLE IF NOT EXISTS "games" (id INT, game_name VARCHAR(500), status VARCHAR(200) DEFAULT('Planned'));`, (err) => {
+        //     if (err) {
+        //       return console.error('error running query', err);
+        //     }
+        //   }
+        // );
 
         // Counter for games data 
         let counter = 0;
@@ -51,20 +51,27 @@ router.get('/import-steam-list', (req, res, next) => {
         res.data.response.games.forEach(
           (game, _, array) => {
             client.query(
-              `INSERT INTO "games"(id, game_name) VALUES ($1, $2);`, [game.appid, game.name], (err) => {
-                if (err) {
-                  return console.error('error running query', err);
-                }
-                counter++;
-                if (counter === array.length) {
-                  console.log('Steam List Imported.');
-                  client.end();
-                }
+              `INSERT INTO "Games"(steam_app_id, game_name) 
+                SELECT $1, $2
+              WHERE NOT EXISTS (
+                SELECT 1 FROM "Games" WHERE steam_app_id = $1);`
+                , 
+              [game.appid, game.name], (err) => {
+              if (err) {
+                return console.error('error running query', err);
               }
+              counter++;
+              if (counter === array.length) {
+                console.log('Steam List Imported.');
+                client.end();
+              }
+            }
             );
           }
         );
       });
+
+      // console.log(req.params.steamIdNumber)
 
       return;
     })

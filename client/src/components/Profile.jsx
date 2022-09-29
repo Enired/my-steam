@@ -31,10 +31,10 @@ export const Profile = (props) => {
         axios.get(`/steam/gamecount/`, { params: { playerId: document.cookie } })
           .then((res) => setGamesCount(res.data.gameCount));
       })
-      .then(() => {
-        axios.get('/steam/games/', { params: { playerId: document.cookie } })
-          .then((res) => { setGamesList(res.data.games.games); });
-      });
+      // .then(() => {
+      //   axios.get('/steam/games/', { params: { playerId: document.cookie } })
+      //     .then((res) => { setGamesList(res.data.games.games); });
+      // });
 
 
 

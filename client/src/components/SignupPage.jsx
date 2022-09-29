@@ -15,15 +15,24 @@ export const SignupPage = (props) => {
       setOpenEmptyFieldsError(true)
       return
     }
-    axios.post('/users/new', {username: userInfo.username, password: userInfo.password, steamIdNumber: userInfo.steamIdNumber} )
-    .then((res) => {console.log(res)})
-    .then(()=>{setAccountCreatedMessage(true)})
-    .catch((err)=>{
-      if(err.response.data === 23505){
-        console.log('Username already taken.')
-        setOpenDuplicateUsernameError(true)
-      }
-    })
+
+    Promise.all([
+      //Adds the user to the database
+      axios.post('/users/new', {username: userInfo.username, password: userInfo.password, steamIdNumber: userInfo.steamIdNumber} )
+      .then((res) => {console.log(res)})
+      .then(()=>{setAccountCreatedMessage(true)})
+      .catch((err)=>{
+        if(err.response.data === 23505){
+          console.log('Username already taken.')
+          setOpenDuplicateUsernameError(true)
+        }
+      }),
+      //Import all games a player owns into the database
+      axios.post(`/steam/import-steam-list/${userInfo.steamIdNumber}`),
+      
+      
+
+    ])
   }
   return (
     <div className="signup-page">
