@@ -69,7 +69,7 @@ router.get('/dropped', (req,res) => {
 
   })
 })
-router.get('/planned', (req,res) => {
+router.get('/planned/:username', (req,res) => {
   const client = new pg.Client(dbConnectionString);
   client.connect((err)=>{
     if (err) {
@@ -77,7 +77,11 @@ router.get('/planned', (req,res) => {
     }
 
     client.query(
-      `SELECT * FROM "games" where status = 'planned';`, (err, result) => {
+      `Select game_name, game_status, steam_app_id from "Games"
+      JOIN "Game_List_Items" ON "Games".game_id = "Game_List_Items".game_id
+      JOIN "Game_Lists" ON "Game_Lists".game_list_id = "Game_List_Items".list_id
+      JOIN "Users" ON "Users".user_id = "Game_Lists".user_id
+      WHERE "Users".username = $1 AND "Game_List_Items".game_status = 'planned';`, [req.params.username],(err, result) => {
         if (err) {
           return console.error('error running query', err);
         }

@@ -135,7 +135,7 @@ router.get('/:username', (req, res) => {
     if (err) {
       return console.error('couldn\'t connect to postgres', err);
     }
-    const query = `SELECT * FROM "Users" WHERE username = $1;`;
+    const query = `SELECT * FROM "Users" WHERE username = $1 ;`;
     client.query(query, [username], (err, result) => {
       if (err) {
         return console.error('error running query', err);

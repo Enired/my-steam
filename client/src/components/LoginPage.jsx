@@ -5,8 +5,8 @@ import axios from 'axios';
 
 export const LoginPage = (props) => {
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  // const [username, setUsername] = useState('');
+  // const [password, setPassword] = useState('');
   const [open, setOpen] = useState(false);
 
   const checkIfBlank = (textInput) => {
@@ -20,7 +20,7 @@ export const LoginPage = (props) => {
   const login = (username) => {
     axios.get(`users/${username}`)
       .then((res) => {
-        if (res.data[0].password === password) {
+        if (res.data[0].password === props.password) {
           document.cookie = res.data[0].steam_id_number;
           props.switchViewLogin();
           props.setLoggedIn(true);
@@ -39,12 +39,12 @@ export const LoginPage = (props) => {
       <h2>Login</h2>
       <div className="login-text">
         <label htmlFor="login-name">Username</label>
-        <input type="text" name="login-name" id="login-name" value={username} onChange={(event) => { setUsername(event.target.value); }} />
+        <input type="text" name="login-name" id="login-name" value={props.username} onChange={(event) => { props.setUsername(event.target.value); }} />
         <label htmlFor="login-password">Password</label>
-        <input type="password" name="login-password" id="login-password" value={password} onChange={(event) => { setPassword(event.target.value); }} />
+        <input type="password" name="login-password" id="login-password" value={props.password} onChange={(event) => { props.setPassword(event.target.value); }} />
       </div>
       <div className="login-buttons">
-        <button className="action-button" id="login-button" onClick={(event) => { (!checkIfBlank(username) & !checkIfBlank(password)) ? login(username) : setOpen(true); }}>Login</button>
+        <button className="action-button" id="login-button" onClick={(event) => { (!checkIfBlank(props.username) & !checkIfBlank(props.password)) ? login(props.username) : setOpen(true); }}>Login</button>
         <button className="action-button" id="sign-up-button" onClick={() => { props.switchViewSignup(); }}>Sign-up</button>
         <button className="action-button" id="forgot-password-button">Forgot Password</button>
       </div>

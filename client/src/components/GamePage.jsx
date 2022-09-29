@@ -24,11 +24,11 @@ export const GamePage = (props) => {
           {gamesList.map(game => {
     
               return (<GameListItemMobileView
-                key={game.id}
+                key={game.steam_app_id}
                 gameId={game.id}
-                gamePic={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.id}/header.jpg`}
+                gamePic={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.steam_app_id}/header.jpg`}
                 gameName={game.game_name}
-                gameStatus={capStatus(game.status)}
+                gameStatus={capStatus(game.game_status)}
               />
                 // <tr className="game-list-table-data" key={game.appid}>
                 //   <td className="game-list-table-data-item game-list-table-img"><img src={`http://media.steampowered.com/steamcommunity/public/images/apps/${game.appid}/${game.hash}.jpg`} alt="" /></td>

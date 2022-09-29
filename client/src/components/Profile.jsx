@@ -36,13 +36,31 @@ export const Profile = (props) => {
       //     .then((res) => { setGamesList(res.data.games.games); });
       // });
 
+      // axios.get('/games/current')
+      // .then(res=>{props.setGamesListCurrent(res.data)})
+      
+      //Get list of completed games
+      // axios.get('/games/completed')
+      // .then(res=>{props.setGamesListCompleted(res.data)})
+      
+      //Get list of dropped games
+      // axios.get('/games/dropped')
+      // .then(res=>{props.setGamesListDropped(res.data)})
+      
+      // //Get list of planned games
+      // axios.get(`/games/planned/${props.username}`)
+      // .then(res=>{props.setGamesListPlanned(res.data)})
+      // //Get list of all games
+      // axios.get('/games/all')
+      // .then((res)=>{props.setGamesListAll(res.data)})
+
 
 
 
   }, []);
 
 
-  const username = player.username;
+  const steamUsername = player.username;
   const id = player.id;
   const avatar = player.avatar;
   const playerName = playerMeta.realname;
@@ -60,7 +78,7 @@ export const Profile = (props) => {
         <div>
           <div className="profile-names">
             <div className="persona-name">
-              {username}
+              {steamUsername}
             </div>
             {playerName &&
               <div className="real-name">

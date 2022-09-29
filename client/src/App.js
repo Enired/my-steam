@@ -39,34 +39,37 @@ function App() {
   ////////////////////////////////////////////////////////////////
   const [player, setPlayer] = useState({});
 
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   useEffect(() => {
-    const playerDBUrl = 'https://playerdb.co/api/player/steam/enired'; //Change this later.
-    axios.get(playerDBUrl)
-      .then((res) => {
-        const player = res.data.data.player;
-        setPlayer(player);
-        // document.cookie=player.id
-      })
+    // const playerDBUrl = 'https://playerdb.co/api/player/steam/enired'; //Change this later.
+    // axios.get(playerDBUrl)
+    //   .then((res) => {
+    //     const player = res.data.data.player;
+    //     setPlayer(player);
+    //     // document.cookie=player.id
+    //   })
 
 
     //Get list of currently playing games
-    axios.get('/games/current')
-    .then(res=>{setGamesListCurrent(res.data)})
+    // axios.get('/games/current')
+    // .then(res=>{setGamesListCurrent(res.data)})
     
-    //Get list of completed games
-    axios.get('/games/completed')
-    .then(res=>{setGamesListCompleted(res.data)})
+    // //Get list of completed games
+    // axios.get('/games/completed')
+    // .then(res=>{setGamesListCompleted(res.data)})
     
-    //Get list of dropped games
-    axios.get('/games/dropped')
-    .then(res=>{setGamesListDropped(res.data)})
+    // //Get list of dropped games
+    // axios.get('/games/dropped')
+    // .then(res=>{setGamesListDropped(res.data)})
     
     //Get list of planned games
-    axios.get('/games/planned')
+    axios.get(`/games/planned/${username}`)
     .then(res=>{setGamesListPlanned(res.data)})
-    //Get list of all games
-    axios.get('/games/all')
-    .then((res)=>{setGamesListAll(res.data)})
+    // //Get list of all games
+    // axios.get('/games/all')
+    // .then((res)=>{setGamesListAll(res.data)})
 
 
 
@@ -134,6 +137,10 @@ function App() {
       switchViewLogin={switchViewLoginProfile} 
       setLoggedIn={setLoggedIn}
       switchViewSignup={switchViewSignup}
+      username={username}
+      password={password}
+      setUsername={setUsername}
+      setPassword={setPassword}
       />}
 
 
@@ -146,12 +153,22 @@ function App() {
       switchViewCompleted={switchViewCompleted}
       switchViewDropped={switchViewDropped}
       switchViewPlanned={switchViewPlanned}
+
+      username={username}
       
       gamesListAll={gamesListAll}
       gamesListCurrent={gamesListCurrent}
       gamesListCompleted={gamesListCompleted}
       gamesListDropped={gamesListDropped}
       gamesListPlanned={gamesListPlanned}
+
+      setGamesListAll={setGamesListAll}
+      setGamesListCurrent={setGamesListCurrent}
+      setGamesListCompleted={setGamesListCompleted}
+      setGamesListDropped={setGamesListDropped}
+      setGamesListPlanned={setGamesListPlanned}
+
+      
       />
     }
 
