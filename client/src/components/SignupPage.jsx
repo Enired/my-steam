@@ -16,21 +16,10 @@ export const SignupPage = (props) => {
       return;
     }
 
-    //Adds the user to the database
-    // axios.post('/users/new', { username: userInfo.username, password: userInfo.password, steamIdNumber: userInfo.steamIdNumber })
-      // .then((res) => {console.log(res)})
-      //Get the id of the newly created user
-      // .then(() => {
-      //   axios.get(`/users/${userInfo.username}`)
-      // })
-      //Create a new list
-      // .then((userId) => {
-      //   // axios.post('/game_lists/new',)
-      //   console.log(userId);
-      // })
-      //Inform the user that the account has been created
-    axios.post(`steam/import-steam-list/${userInfo.steamIdNumber}`)
-      .then(() => {
+    // Adds the user to the database
+    axios.post('/users/new', { username: userInfo.username, password: userInfo.password, steamIdNumber: userInfo.steamIdNumber })
+    .then(()=>{console.log('complete')})
+    .then(() => {
         setAccountCreatedMessage(true);
       })
 
