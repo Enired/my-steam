@@ -92,7 +92,7 @@ export const Profile = (props) => {
         </div>
 
         <div className="profile-avatar">
-          <img src={avatar} alt="steam-profile-picture" />
+          <img src={avatar} />
         </div>
       </div>
 

@@ -11,7 +11,7 @@ export const GameListItemMobileView = (props) => {
         <table className="something">
           <tbody>
             <tr>
-              <td className="game-list-table-data-item game-list-table-img" colSpan={2}><img src={props.gamePic} alt={'Image Unavailable'} onError={event=>{event.target.src=banner}}/></td>
+              <td className="game-list-table-data-item game-list-table-img" colSpan={2}><img src={props.gamePic} onError={event=>{event.target.src=banner}}/></td>
             </tr>
             <tr>
               <th className="game-list-table-header">Name:</th>
