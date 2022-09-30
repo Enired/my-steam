@@ -146,13 +146,15 @@ router.put('/:id/current', (req,res) => {
     }
 
     client.query(
-      `UPDATE games SET status = 'current' where id= $1`,[req.params.id], (err, result) => {
+      `UPDATE "Game_List_Items" SET game_status = 'current' where game_list_item_id = $1`,[req.params.id], (err, result) => {
         if (err) {
           return console.error('error running query', err);
         }
         console.log(result)
+        console.log('hello')
         client.end()
         res.status(200)
+        res.send()
       }
     );
 
@@ -167,13 +169,14 @@ router.put('/:id/completed', (req,res) => {
     }
 
     client.query(
-      `UPDATE games SET status = 'completed' where id= $1`,[req.params.id], (err, result) => {
+      `UPDATE "Game_List_Items" SET game_status = 'completed' where game_list_item_id = $1`,[req.params.id], (err, result) => {
         if (err) {
           return console.error('error running query', err);
         }
         console.log(result)
         client.end()
         res.status(200)
+        res.send()
       }
     );
 
@@ -189,13 +192,14 @@ router.put('/:id/dropped', (req,res) => {
     }
 
     client.query(
-      `UPDATE games SET status = 'dropped' where id= $1`,[req.params.id], (err, result) => {
+      `UPDATE "Game_List_Items" SET game_status = 'dropped' where game_list_item_id = $1`,[req.params.id], (err, result) => {
         if (err) {
           return console.error('error running query', err);
         }
         console.log(result)
         client.end()
         res.status(200)
+        res.send()
       }
     );
 
@@ -211,13 +215,14 @@ router.put('/:id/planned', (req,res) => {
     }
 
     client.query(
-      `UPDATE games SET status = 'planned' where id= $1`,[req.params.id], (err, result) => {
+      `UPDATE "Game_List_Items" SET game_status = 'planned' where game_list_item_id = $1`,[req.params.id], (err, result) => {
         if (err) {
           return console.error('error running query', err);
         }
         console.log(result)
         client.end()
         res.status(200)
+        res.send()
       }
     );
 

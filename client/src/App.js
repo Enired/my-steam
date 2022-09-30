@@ -52,21 +52,23 @@ function App() {
     //   })
 
 
+    if(loggedIn){
     //Get list of currently playing games
-    // axios.get('/games/current')
-    // .then(res=>{setGamesListCurrent(res.data)})
+    axios.get(`/games/current/${username}`)
+    .then(res=>{setGamesListCurrent(res.data)})
     
-    // //Get list of completed games
-    // axios.get('/games/completed')
-    // .then(res=>{setGamesListCompleted(res.data)})
+    //Get list of completed games
+    axios.get(`/games/completed/${username}`)
+    .then(res=>{setGamesListCompleted(res.data)})
     
     // //Get list of dropped games
-    // axios.get('/games/dropped')
-    // .then(res=>{setGamesListDropped(res.data)})
+    axios.get(`/games/dropped/${username}`)
+    .then(res=>{setGamesListDropped(res.data)})
     
     //Get list of planned games
-    axios.get(`/games/planned/${username}`)
-    .then(res=>{setGamesListPlanned(res.data)})
+      axios.get(`/games/planned/${username}`)
+      .then(res=>{setGamesListPlanned(res.data)})
+    }
     // //Get list of all games
     // axios.get('/games/all')
     // .then((res)=>{setGamesListAll(res.data)})
@@ -114,6 +116,9 @@ function App() {
     setGamePageDroppedHidden(true)
     setGamePagePlannedHidden(true)
     setSignupHidden(true)
+
+    setUsername('')
+    setPassword('')
     window.scrollTo(0,0);
   }
   const switchViewSignup = () => {
