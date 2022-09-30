@@ -1,4 +1,3 @@
-import { useSlotProps } from "@mui/base";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../styles/Profile.scss";
@@ -13,10 +12,10 @@ export const Profile = (props) => {
   const [player, setPlayer] = useState({});
   const [playerMeta, setPlayerMeta] = useState({});
   const [gamesCount, setGamesCount] = useState(0);
-  const [gamesList, setGamesList] = useState([]);
+  // const [gamesList, setGamesList] = useState([]);
 
 
-  const steamAPIKey = process.env.REACT_APP_STEAM_API_KEY;
+  // const steamAPIKey = process.env.REACT_APP_STEAM_API_KEY;
 
   useEffect(() => {
     const playerDBUrl = `https://playerdb.co/api/player/steam/${document.cookie}`; //Change this later.
@@ -61,11 +60,11 @@ export const Profile = (props) => {
 
 
   const steamUsername = player.username;
-  const id = player.id;
+  // const id = player.id;
   const avatar = player.avatar;
   const playerName = playerMeta.realname;
   const officialSteamProfile = playerMeta.profileurl;
-  const randomNumber = Math.floor(Math.random() * gamesCount); //Testing Atm
+  // const randomNumber = Math.floor(Math.random() * gamesCount); //Testing Atm
 
   //////////////////////////////////
   // For the game List            //
@@ -101,7 +100,7 @@ export const Profile = (props) => {
         <a href={officialSteamProfile} className="link">Official Steam Profile</a>
       </div>
       <div className="official-steam-profile-link see-all-games-link">
-        <a onClick={() => { props.switchViewAll(); }} className="link">See All Games</a>
+        <div onClick={() => { props.switchViewAll(); }} className="link">See All Games</div>
       </div>
 
       <div className="lists">

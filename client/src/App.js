@@ -37,7 +37,7 @@ function App() {
   const [gamesListDropped, setGamesListDropped] = useState([])
   const [gamesListPlanned, setGamesListPlanned] = useState([])
   ////////////////////////////////////////////////////////////////
-  const [player, setPlayer] = useState({});
+  // const [player, setPlayer] = useState({});
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -75,7 +75,7 @@ function App() {
 
 
 
-  }, [profileHidden, loggedIn]);
+  }, [profileHidden, loggedIn, username]);
 
   const switchViewAll = () =>{
     setProfileHidden(!profileHidden)
