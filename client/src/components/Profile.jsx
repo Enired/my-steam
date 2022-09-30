@@ -92,7 +92,7 @@ export const Profile = (props) => {
         </div>
 
         <div className="profile-avatar">
-          <img src={avatar} />
+          <img src={avatar} alt="" />
         </div>
       </div>
 
