@@ -1,5 +1,5 @@
-//Importing my components
 import { Profile } from './components/Profile';
+//Importing my components
 import { Navbar } from './components/Navbar';
 import axios from 'axios';
 
@@ -68,10 +68,10 @@ function App() {
     //Get list of planned games
       axios.get(`/games/planned/${username}`)
       .then(res=>{setGamesListPlanned(res.data)})
+      // //Get list of all games
+      axios.get(`/games/all/${username}`)
+      .then((res)=>{setGamesListAll(res.data)})
     }
-    // //Get list of all games
-    // axios.get('/games/all')
-    // .then((res)=>{setGamesListAll(res.data)})
 
 
 
