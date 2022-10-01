@@ -97,7 +97,7 @@ export const Profile = (props) => {
       </div>
 
       <div className="official-steam-profile-link">
-        <a href={officialSteamProfile} className="link">Official Steam Profile</a>
+        <a href={officialSteamProfile} target="_blank" className="link">Official Steam Profile</a>
       </div>
       <div className="official-steam-profile-link see-all-games-link">
         <div onClick={() => { props.switchViewAll(); }} className="link">See All Games</div>
@@ -107,7 +107,7 @@ export const Profile = (props) => {
         <div className="games" id="games-current">
           Current Games
           <ul className="game-list">
-            {(props.gamesListCurrent).map((game) => {
+            {(props.gamesListCurrent.slice(0, 5)).map((game) => {
               return <li key={game.id} className="game-list-item">{game.game_name}</li>;
             })}
             {props.gamesListCurrent.length > 0 ?
