@@ -24,60 +24,6 @@ function App() {
   };
   
   const [visualState, setVisualState] = useState(defaultVisualState);
-  ////////////////////////////////////////////////////////////////
-
-  /////////////////////
-  // Logged In State //
-  /////////////////////
-
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  ////////////////
-  // Game Lists //
-  ////////////////
-
-  const defaultGamesList = {
-    all:[],
-    current: [],
-    completed: [],
-    dropped: [],
-    planned: []
-  }
-  const [gamesList, setGamesList] = useState(defaultGamesList);
-
-  const [gamesListAll, setGamesListAll] = useState([]);
-  const [gamesListCurrent, setGamesListCurrent] = useState([]);
-  const [gamesListCompleted, setGamesListCompleted] = useState([]);
-  const [gamesListDropped, setGamesListDropped] = useState([]);
-  const [gamesListPlanned, setGamesListPlanned] = useState([]);
-  ////////////////////////////////////////////////////////////////
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  useEffect(() => {
-    if (loggedIn) {
-      //Get list of currently playing games
-      axios.get(`/games/current/${username}`)
-        .then(res => { setGamesList(prev=>({...prev, current: res.data})); });
-
-      //Get list of completed games
-      axios.get(`/games/completed/${username}`)
-      .then(res => { setGamesList(prev=>({...prev, completed: res.data})); });
-
-      // //Get list of dropped games
-      axios.get(`/games/dropped/${username}`)
-      .then(res => { setGamesList(prev=>({...prev, dropped: res.data})); });
-
-      //Get list of planned games
-      axios.get(`/games/planned/${username}`)
-      .then(res => { setGamesList(prev=>({...prev, planned: res.data})); });
-      // //Get list of all games
-      axios.get(`/games/all/${username}`)
-      .then(res => { setGamesList(prev=>({...prev, all: res.data})); });
-    }
-
-  }, [loggedIn, username, visualState]);
-
 
 
   const setDefaultVisualState = () => {
@@ -88,8 +34,6 @@ function App() {
 
     setVisualState(prev=>({...prev, profileHidden: !visualState.profileHidden}))
     setVisualState(prev=>({...prev, gamePageAllHidden: !visualState.gamePageAllHidden}))
-
-
     window.scrollTo(0, 0);
   };
   const switchViewCurrent = () => {
@@ -131,6 +75,56 @@ function App() {
     setVisualState(prev=>({...prev, signupHidden: false}))
     window.scrollTo(0, 0);
   };
+  ////////////////////////////////////////////////////////////////
+
+  /////////////////////
+  // Logged In State //
+  /////////////////////
+
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  ////////////////
+  // Game Lists //
+  ////////////////
+
+  const defaultGamesList = {
+    all:{list:[], switchView: switchViewAll},
+    current: {list:[], switchView: switchViewCurrent},
+    completed: {list:[], switchView: switchViewCompleted},
+    dropped: {list:[], switchView: switchViewDropped},
+    planned: {list: [], switchView: switchViewPlanned}
+  }
+  const [gamesList, setGamesList] = useState(defaultGamesList);
+
+  ////////////////////////////////////////////////////////////////
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    if (loggedIn) {
+      //Get list of currently playing games
+      axios.get(`/games/current/${username}`)
+        .then(res => { setGamesList(prev=>({...prev, current: {list:res.data, switchView: switchViewCurrent}})); });
+
+      //Get list of completed games
+      axios.get(`/games/completed/${username}`)
+      .then(res => { setGamesList(prev=>({...prev, completed: {list:res.data, switchView: switchViewCompleted}})); });
+
+      // //Get list of dropped games
+      axios.get(`/games/dropped/${username}`)
+      .then(res => { setGamesList(prev=>({...prev, dropped: {list:res.data, switchView: switchViewDropped}})); });
+
+      //Get list of planned games
+      axios.get(`/games/planned/${username}`)
+      .then(res => { setGamesList(prev=>({...prev, planned: {list: res.data, switchView: switchViewPlanned}})); });
+      // //Get list of all games
+      axios.get(`/games/all/${username}`)
+      .then(res => { setGamesList(prev=>({...prev, all: {list:res.data, switchView: switchViewAll}})); });
+    }
+
+  }, [loggedIn, username, visualState]);
+
+
 
   return (
     <div className="App">
@@ -170,19 +164,19 @@ function App() {
 
 
       {/* //Game page for All Games */}
-      {!visualState.gamePageAllHidden && <GamePage id="game-page-all" gamesList={gamesList.all} switchView={switchViewAll} />}
+      {!visualState.gamePageAllHidden && <GamePage id="game-page-all" gamesList={gamesList.all.list} switchView={gamesList.all.switchView} />}
 
       {/* //Game page for Current Games */}
-      {!visualState.gamePageCurrentHidden && <GamePage id="game-page-current" gamesList={gamesList.current} switchView={switchViewCurrent} />}
+      {!visualState.gamePageCurrentHidden && <GamePage id="game-page-current" gamesList={gamesList.current.list} switchView={gamesList.current.switchView} />}
 
       {/* //Game page for Completed Games */}
-      {!visualState.gamePageCompletedHidden && <GamePage id="game-page-completed" gamesList={gamesList.completed} switchView={switchViewCompleted} />}
+      {!visualState.gamePageCompletedHidden && <GamePage id="game-page-completed" gamesList={gamesList.completed.list} switchView={gamesList.completed.switchView} />}
 
       {/* //Game page for Dropped Games */}
-      {!visualState.gamePageDroppedHidden && <GamePage id="game-page-dropped" gamesList={gamesList.dropped} switchView={switchViewDropped} />}
+      {!visualState.gamePageDroppedHidden && <GamePage id="game-page-dropped" gamesList={gamesList.dropped.list} switchView={gamesList.dropped.switchView} />}
 
       {/* //Game page for Planned Games */}
-      {!visualState.gamePagePlannedHidden && <GamePage id="game-page-planned" gamesList={gamesList.planned} switchView={switchViewPlanned} />}
+      {!visualState.gamePagePlannedHidden && <GamePage id="game-page-planned" gamesList={gamesList.planned.list} switchView={gamesList.planned.switchView} />}
     </div>
 
 

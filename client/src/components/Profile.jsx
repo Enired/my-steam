@@ -24,7 +24,7 @@ export const Profile = (props) => {
       .then(() => {
         axios.get(`/steam/gamecount/`, { params: { playerId: document.cookie } })
           .then((res) => setGamesCount(res.data.gameCount));
-      })
+      });
   }, []);
 
 
@@ -32,6 +32,7 @@ export const Profile = (props) => {
   const avatar = player.avatar;
   const playerName = playerMeta.realname;
   const officialSteamProfile = playerMeta.profileurl;
+  const gameLists = Object.keys(props.gamesList);
   // const randomNumber = Math.floor(Math.random() * gamesCount); //Testing Atm
 
   //////////////////////////////////
@@ -72,62 +73,20 @@ export const Profile = (props) => {
       </div>
 
       <div className="lists">
-
-        <div className="games" id="games-current">
-          Current Games
+        {gameLists.slice(1).map(key => <div className="games" id={`games-${key}`} key={key}>
+          {`${key[0].toUpperCase()}${key.slice(1)} Games`}
           <ul className="game-list">
-            {(props.gamesList.current.slice(0, 5)).map((game) => {
-              return <li key={game.game_id} className="game-list-item">{game.game_name}</li>;
+            {(props.gamesList[key].list.slice(0, 5)).map((game) => {
+              return <li key={game.game_list_item_id} className="game-list-item">{game.game_name}</li>;
             })}
-            {props.gamesList.current.length > 0 ?
-              <li className="game-list-item game-list-see-more" onClick={props.switchViewCurrent}>See More</li> :
-              <li className="game-list-item game-list-no-games">No games</li>
+            {props.gamesList[key].list.length > 0 ?
+              <li className="game-list-item game-list-see-more" key={`see-more-games-in-${key}-list`} onClick={()=>props.gamesList[key].switchView()}>See More</li> :
+              <li className="game-list-item game-list-no-games" key={`no-games-in-${key}-list`}>No games</li>
             }
           </ul>
-        </div>
-
-        <div className="games" id="games-completed">
-          Completed Games
-          <ul className="game-list">
-            {(props.gamesList.completed.slice(0, 5)).map((game) => {
-              return <li key={game.game_id} className="game-list-item">{game.game_name}</li>;
-            })}
-            {props.gamesList.completed.length > 0 ?
-              <li className="game-list-item game-list-see-more" onClick={props.switchViewCompleted}>See More</li> :
-              <li className="game-list-item game-list-no-games">No games</li>
-            }
-          </ul>
-        </div>
-
-        <div className="games" id="games-dropped">
-          Dropped Games
-          <ul className="game-list">
-            {(props.gamesList.dropped.slice(0, 5)).map((game) => {
-              return <li key={game.game_id} className="game-list-item">{game.game_name}</li>;
-            })}
-            {props.gamesList.dropped.length > 0 ?
-            <li className="game-list-item game-list-see-more" onClick={props.switchViewDropped}>See More</li>:             
-            <li className="game-list-item game-list-no-games">No games</li>
-            }
-          </ul>
-        </div>
-
-        <div className="games" id="games-planning">
-          Planned Games
-          <ul className="game-list">
-            {(props.gamesList.planned.slice(0, 5)).map((game) => {
-              return <li key={game.game_id} className="game-list-item">{game.game_name}</li>;
-            })}
-            {props.gamesList.planned.length > 0 ?
-            <li className="game-list-item game-list-see-more" onClick={props.switchViewPlanned}>See More</li>:              
-            <li className="game-list-item game-list-no-games">No games</li>
-            }
-          </ul>
-        </div>
-
-
+        </div>)}
       </div>
-      
+
     </div>
   );
 
