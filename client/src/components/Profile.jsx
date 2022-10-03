@@ -12,10 +12,6 @@ export const Profile = (props) => {
   const [player, setPlayer] = useState({});
   const [playerMeta, setPlayerMeta] = useState({});
   const [gamesCount, setGamesCount] = useState(0);
-  // const [gamesList, setGamesList] = useState([]);
-
-
-  // const steamAPIKey = process.env.REACT_APP_STEAM_API_KEY;
 
   useEffect(() => {
     const playerDBUrl = `https://playerdb.co/api/player/steam/${document.cookie}`; //Change this later.
@@ -23,44 +19,16 @@ export const Profile = (props) => {
       .then((res) => {
         const player = res.data.data.player;
         setPlayer(player);
-        // document.cookie = player.id;
         setPlayerMeta(player.meta);
       })
       .then(() => {
         axios.get(`/steam/gamecount/`, { params: { playerId: document.cookie } })
           .then((res) => setGamesCount(res.data.gameCount));
       })
-      // .then(() => {
-      //   axios.get('/steam/games/', { params: { playerId: document.cookie } })
-      //     .then((res) => { setGamesList(res.data.games.games); });
-      // });
-
-      // axios.get('/games/current')
-      // .then(res=>{props.setGamesListCurrent(res.data)})
-      
-      //Get list of completed games
-      // axios.get('/games/completed')
-      // .then(res=>{props.setGamesListCompleted(res.data)})
-      
-      //Get list of dropped games
-      // axios.get('/games/dropped')
-      // .then(res=>{props.setGamesListDropped(res.data)})
-      
-      // //Get list of planned games
-      // axios.get(`/games/planned/${props.username}`)
-      // .then(res=>{props.setGamesListPlanned(res.data)})
-      // //Get list of all games
-      // axios.get('/games/all')
-      // .then((res)=>{props.setGamesListAll(res.data)})
-
-
-
-
   }, []);
 
 
   const steamUsername = player.username;
-  // const id = player.id;
   const avatar = player.avatar;
   const playerName = playerMeta.realname;
   const officialSteamProfile = playerMeta.profileurl;
@@ -104,13 +72,14 @@ export const Profile = (props) => {
       </div>
 
       <div className="lists">
+
         <div className="games" id="games-current">
           Current Games
           <ul className="game-list">
-            {(props.gamesListCurrent.slice(0, 5)).map((game) => {
+            {(props.gamesList.current.slice(0, 5)).map((game) => {
               return <li key={game.game_id} className="game-list-item">{game.game_name}</li>;
             })}
-            {props.gamesListCurrent.length > 0 ?
+            {props.gamesList.current.length > 0 ?
               <li className="game-list-item game-list-see-more" onClick={props.switchViewCurrent}>See More</li> :
               <li className="game-list-item game-list-no-games">No games</li>
             }
@@ -120,10 +89,10 @@ export const Profile = (props) => {
         <div className="games" id="games-completed">
           Completed Games
           <ul className="game-list">
-            {(props.gamesListCompleted.slice(0, 5)).map((game) => {
+            {(props.gamesList.completed.slice(0, 5)).map((game) => {
               return <li key={game.game_id} className="game-list-item">{game.game_name}</li>;
             })}
-            {props.gamesListCompleted.length > 0 ?
+            {props.gamesList.completed.length > 0 ?
               <li className="game-list-item game-list-see-more" onClick={props.switchViewCompleted}>See More</li> :
               <li className="game-list-item game-list-no-games">No games</li>
             }
@@ -133,10 +102,10 @@ export const Profile = (props) => {
         <div className="games" id="games-dropped">
           Dropped Games
           <ul className="game-list">
-            {(props.gamesListDropped.slice(0, 5)).map((game) => {
+            {(props.gamesList.dropped.slice(0, 5)).map((game) => {
               return <li key={game.game_id} className="game-list-item">{game.game_name}</li>;
             })}
-            {props.gamesListDropped.length > 0 ?
+            {props.gamesList.dropped.length > 0 ?
             <li className="game-list-item game-list-see-more" onClick={props.switchViewDropped}>See More</li>:             
             <li className="game-list-item game-list-no-games">No games</li>
             }
@@ -146,10 +115,10 @@ export const Profile = (props) => {
         <div className="games" id="games-planning">
           Planned Games
           <ul className="game-list">
-            {(props.gamesListPlanned.slice(0, 5)).map((game) => {
+            {(props.gamesList.planned.slice(0, 5)).map((game) => {
               return <li key={game.game_id} className="game-list-item">{game.game_name}</li>;
             })}
-            {props.gamesListPlanned.length > 0 ?
+            {props.gamesList.planned.length > 0 ?
             <li className="game-list-item game-list-see-more" onClick={props.switchViewPlanned}>See More</li>:              
             <li className="game-list-item game-list-no-games">No games</li>
             }
@@ -158,6 +127,7 @@ export const Profile = (props) => {
 
 
       </div>
+      
     </div>
   );
 

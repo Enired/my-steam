@@ -35,6 +35,16 @@ function App() {
   ////////////////
   // Game Lists //
   ////////////////
+
+  const defaultGamesList = {
+    all:[],
+    current: [],
+    completed: [],
+    dropped: [],
+    planned: []
+  }
+  const [gamesList, setGamesList] = useState(defaultGamesList);
+
   const [gamesListAll, setGamesListAll] = useState([]);
   const [gamesListCurrent, setGamesListCurrent] = useState([]);
   const [gamesListCompleted, setGamesListCompleted] = useState([]);
@@ -48,22 +58,22 @@ function App() {
     if (loggedIn) {
       //Get list of currently playing games
       axios.get(`/games/current/${username}`)
-        .then(res => { setGamesListCurrent(res.data); });
+        .then(res => { setGamesList(prev=>({...prev, current: res.data})); });
 
       //Get list of completed games
       axios.get(`/games/completed/${username}`)
-        .then(res => { setGamesListCompleted(res.data); });
+      .then(res => { setGamesList(prev=>({...prev, completed: res.data})); });
 
       // //Get list of dropped games
       axios.get(`/games/dropped/${username}`)
-        .then(res => { setGamesListDropped(res.data); });
+      .then(res => { setGamesList(prev=>({...prev, dropped: res.data})); });
 
       //Get list of planned games
       axios.get(`/games/planned/${username}`)
-        .then(res => { setGamesListPlanned(res.data); });
+      .then(res => { setGamesList(prev=>({...prev, planned: res.data})); });
       // //Get list of all games
       axios.get(`/games/all/${username}`)
-        .then((res) => { setGamesListAll(res.data); });
+      .then(res => { setGamesList(prev=>({...prev, all: res.data})); });
     }
 
   }, [loggedIn, username, visualState]);
@@ -150,18 +160,7 @@ function App() {
 
           username={username}
 
-          gamesListAll={gamesListAll}
-          gamesListCurrent={gamesListCurrent}
-          gamesListCompleted={gamesListCompleted}
-          gamesListDropped={gamesListDropped}
-          gamesListPlanned={gamesListPlanned}
-
-          setGamesListAll={setGamesListAll}
-          setGamesListCurrent={setGamesListCurrent}
-          setGamesListCompleted={setGamesListCompleted}
-          setGamesListDropped={setGamesListDropped}
-          setGamesListPlanned={setGamesListPlanned}
-
+          gamesList={gamesList}
 
         />
       }
@@ -171,19 +170,19 @@ function App() {
 
 
       {/* //Game page for All Games */}
-      {!visualState.gamePageAllHidden && <GamePage id="game-page-all" gamesList={gamesListAll} switchView={switchViewAll} />}
+      {!visualState.gamePageAllHidden && <GamePage id="game-page-all" gamesList={gamesList.all} switchView={switchViewAll} />}
 
       {/* //Game page for Current Games */}
-      {!visualState.gamePageCurrentHidden && <GamePage id="game-page-current" gamesList={gamesListCurrent} switchView={switchViewCurrent} />}
+      {!visualState.gamePageCurrentHidden && <GamePage id="game-page-current" gamesList={gamesList.current} switchView={switchViewCurrent} />}
 
       {/* //Game page for Completed Games */}
-      {!visualState.gamePageCompletedHidden && <GamePage id="game-page-completed" gamesList={gamesListCompleted} switchView={switchViewCompleted} />}
+      {!visualState.gamePageCompletedHidden && <GamePage id="game-page-completed" gamesList={gamesList.completed} switchView={switchViewCompleted} />}
 
       {/* //Game page for Dropped Games */}
-      {!visualState.gamePageDroppedHidden && <GamePage id="game-page-dropped" gamesList={gamesListDropped} switchView={switchViewDropped} />}
+      {!visualState.gamePageDroppedHidden && <GamePage id="game-page-dropped" gamesList={gamesList.dropped} switchView={switchViewDropped} />}
 
       {/* //Game page for Planned Games */}
-      {!visualState.gamePagePlannedHidden && <GamePage id="game-page-planned" gamesList={gamesListPlanned} switchView={switchViewPlanned} />}
+      {!visualState.gamePagePlannedHidden && <GamePage id="game-page-planned" gamesList={gamesList.planned} switchView={switchViewPlanned} />}
     </div>
 
 
