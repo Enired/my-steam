@@ -69,7 +69,7 @@ export const Profile = (props) => {
         <a href={officialSteamProfile} target="_blank" rel="noreferrer" className="link">Official Steam Profile</a>
       </div>
       <div className="official-steam-profile-link see-all-games-link">
-        <div onClick={() => { props.switchViewAll(); }} className="link">See All Games</div>
+        <div onClick={() => { props.gamesList['all'].switchView(); }} className="link">See All Games</div>
       </div>
 
       <div className="lists">

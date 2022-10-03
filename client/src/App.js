@@ -146,14 +146,7 @@ function App() {
       {/* //Profile Page View */}
       {!visualState.profileHidden &&
         <Profile
-          switchViewAll={switchViewAll}
-          switchViewCurrent={switchViewCurrent}
-          switchViewCompleted={switchViewCompleted}
-          switchViewDropped={switchViewDropped}
-          switchViewPlanned={switchViewPlanned}
-
           username={username}
-
           gamesList={gamesList}
 
         />
