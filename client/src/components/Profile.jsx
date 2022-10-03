@@ -108,7 +108,7 @@ export const Profile = (props) => {
           Current Games
           <ul className="game-list">
             {(props.gamesListCurrent.slice(0, 5)).map((game) => {
-              return <li key={game.id} className="game-list-item">{game.game_name}</li>;
+              return <li key={game.game_id} className="game-list-item">{game.game_name}</li>;
             })}
             {props.gamesListCurrent.length > 0 ?
               <li className="game-list-item game-list-see-more" onClick={props.switchViewCurrent}>See More</li> :
@@ -121,7 +121,7 @@ export const Profile = (props) => {
           Completed Games
           <ul className="game-list">
             {(props.gamesListCompleted.slice(0, 5)).map((game) => {
-              return <li key={game.id} className="game-list-item">{game.game_name}</li>;
+              return <li key={game.game_id} className="game-list-item">{game.game_name}</li>;
             })}
             {props.gamesListCompleted.length > 0 ?
               <li className="game-list-item game-list-see-more" onClick={props.switchViewCompleted}>See More</li> :
@@ -134,7 +134,7 @@ export const Profile = (props) => {
           Dropped Games
           <ul className="game-list">
             {(props.gamesListDropped.slice(0, 5)).map((game) => {
-              return <li key={game.id} className="game-list-item">{game.game_name}</li>;
+              return <li key={game.game_id} className="game-list-item">{game.game_name}</li>;
             })}
             {props.gamesListDropped.length > 0 ?
             <li className="game-list-item game-list-see-more" onClick={props.switchViewDropped}>See More</li>:             
@@ -147,7 +147,7 @@ export const Profile = (props) => {
           Planned Games
           <ul className="game-list">
             {(props.gamesListPlanned.slice(0, 5)).map((game) => {
-              return <li key={game.id} className="game-list-item">{game.game_name}</li>;
+              return <li key={game.game_id} className="game-list-item">{game.game_name}</li>;
             })}
             {props.gamesListPlanned.length > 0 ?
             <li className="game-list-item game-list-see-more" onClick={props.switchViewPlanned}>See More</li>:              

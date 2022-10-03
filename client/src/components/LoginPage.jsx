@@ -5,8 +5,6 @@ import axios from 'axios';
 
 export const LoginPage = (props) => {
 
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
   const [open, setOpen] = useState(false);
 
   const checkIfBlank = (textInput) => {
@@ -41,7 +39,7 @@ export const LoginPage = (props) => {
         <label htmlFor="login-name">Username</label>
         <input type="text" name="login-name" id="login-name" value={props.username} onChange={(event) => { props.setUsername(event.target.value); }} />
         <label htmlFor="login-password">Password</label>
-        <input type="password" name="login-password" id="login-password" value={props.password} onChange={(event) => { props.setPassword(event.target.value); }} />
+        <input type="password" name="login-password" id="login-password" autoComplete="off" value={props.password} onChange={(event) => { props.setPassword(event.target.value); }} />
       </div>
       <div className="login-buttons">
         <button className="action-button" id="login-button" onClick={(event) => { (!checkIfBlank(props.username) & !checkIfBlank(props.password)) ? login(props.username) : setOpen(true); }}>Login</button>
@@ -49,7 +47,7 @@ export const LoginPage = (props) => {
         <button className="action-button" id="forgot-password-button">Forgot Password</button>
       </div>
 
-      <Modal className="another" open={open} onClose={() => setOpen(false)}><div className="error-message-modal">Please ensure all fields are filled.</div></Modal>
+      <Modal className="message-modal" open={open} onClose={() => setOpen(false)}><div className="message-modal-message">Please ensure all fields are filled.</div></Modal>
     </div>
 
   );

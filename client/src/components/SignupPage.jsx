@@ -8,6 +8,7 @@ export const SignupPage = (props) => {
   const [openDuplicateUsernameError, setOpenDuplicateUsernameError] = useState(false);
   const [openEmptyFieldsError, setOpenEmptyFieldsError] = useState(false);
   const [accountCreatedMessage, setAccountCreatedMessage] = useState(false);
+  const [importingSteamListMessage, setImportingSteamListMessage] = useState(false);
 
   const signup = (userInfo) => {
     console.log(userInfo);
@@ -16,9 +17,11 @@ export const SignupPage = (props) => {
       return;
     }
 
+    setImportingSteamListMessage(true)
+
     // Adds the user to the database
     axios.post('/users/new', { username: userInfo.username, password: userInfo.password, steamIdNumber: userInfo.steamIdNumber })
-    .then(()=>{console.log('complete')})
+    .then(()=>{setImportingSteamListMessage(false)})
     .then(() => {
         setAccountCreatedMessage(true);
       })
@@ -59,9 +62,10 @@ export const SignupPage = (props) => {
         <button className="signup-button" onClick={(event) => setUserInfo({ username: '', password: '', steamIdNumber: 0 })}>Reset</button>
       </div>
 
-      <Modal className="another" open={openDuplicateUsernameError} onClose={() => setOpenDuplicateUsernameError(false)}><div className="error-message-modal">Username already taken.</div></Modal>
-      <Modal className="another" open={openEmptyFieldsError} onClose={() => setOpenEmptyFieldsError(false)}><div className="error-message-modal">All fields must be entered.</div></Modal>
-      <Modal className="another" open={accountCreatedMessage} onClose={() => { setAccountCreatedMessage(false); props.switchViewLogout(); }}><div className="error-message-modal">Account created. Please login.</div></Modal>
+      <Modal className="message-modal" open={openDuplicateUsernameError} onClose={() => setOpenDuplicateUsernameError(false)}><div className="message-modal-message">Username already taken.</div></Modal>
+      <Modal className="message-modal" open={openEmptyFieldsError} onClose={() => setOpenEmptyFieldsError(false)}><div className="message-modal-message">All fields must be entered.</div></Modal>
+      <Modal className="message-modal" open={accountCreatedMessage} onClose={() => { setAccountCreatedMessage(false); props.switchViewLogout(); }}><div className="message-modal-message">Account created. Please login.</div></Modal>
+      <Modal className="message-modal" open={importingSteamListMessage} onClose={() => { setImportingSteamListMessage(false);}}><div className="message-modal-message">Importing your steam games. Please wait.</div></Modal>
     </div>
   );
 };
