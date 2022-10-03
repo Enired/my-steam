@@ -11,7 +11,6 @@ export const SignupPage = (props) => {
   const [openImportingSteamListMessage, setOpenImportingSteamListMessage] = useState(false);
 
   const signup = (userInfo) => {
-    console.log(userInfo);
     if (!userInfo.username || !userInfo.password || !userInfo.steamIdNumber) {
       setOpenEmptyFieldsError(true);
       return;
@@ -29,7 +28,6 @@ export const SignupPage = (props) => {
 
       .catch((err) => {
         if (err.response.data === 23505) {
-          console.log('Username already taken.');
           setOpenDuplicateUsernameError(true);
         }
       })

@@ -6,6 +6,7 @@ import axios from 'axios';
 export const LoginPage = (props) => {
 
   const [openEmptyFieldsError, setOpenEmptyFieldsError] = useState(false);
+  const [openIncorrectCredentialsError, setOpenIncorrectCredentialsError] = useState(false);
 
   const checkIfBlank = (textInput) => {
     if (!textInput) {
@@ -24,9 +25,9 @@ export const LoginPage = (props) => {
           props.setLoggedIn(true);
         }
         else {
-          console.log('Wrong Credentials');
+          setOpenIncorrectCredentialsError(true)
         }
-        // console.log(res.data[0])
+      
       });
 
   };
@@ -48,6 +49,7 @@ export const LoginPage = (props) => {
       </div>
 
       <Modal className="message-modal" open={openEmptyFieldsError} onClose={() => setOpenEmptyFieldsError(false)}><div className="message-modal-message">Please ensure all fields are filled.</div></Modal>
+      <Modal className="message-modal" open={openIncorrectCredentialsError} onClose={() => setOpenIncorrectCredentialsError(false)}><div className="message-modal-message"> Login Error: Incorrect Credentials</div></Modal>
     </div>
 
   );
