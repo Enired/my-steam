@@ -28,7 +28,8 @@ export const SignupPage = (props) => {
 
       .catch((err) => {
         if (err.response.data === 23505) {
-          setOpenDuplicateUsernameError(true);
+          setOpenImportingSteamListMessage(false)
+          return setOpenDuplicateUsernameError(true);
         }
       })
       //Import all games a player owns into the database
