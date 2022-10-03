@@ -45,14 +45,14 @@ export const SignupPage = (props) => {
       <h2>Sign-up</h2>
       <div className="signup-fields">
         <label htmlFor="username-creation">Username</label>
-        <input type="text" className="signup-field" id="username-creation" placeholder="Username" value={userInfo.username} onChange={(event) => setUserInfo(prev => ({ ...prev, username: event.target.value }))} />
+        <input type="text" className="signup-field" id="username-creation" autoComplete="off" placeholder="Username" value={userInfo.username} onChange={(event) => setUserInfo(prev => ({ ...prev, username: event.target.value }))} />
         <label htmlFor="password-creation">Password</label>
-        <input type="password" className="signup-field" id="password-creation" placeholder="Password" value={userInfo.password} onChange={(event) => setUserInfo(prev => ({ ...prev, password: event.target.value }))} />
+        <input type="password" className="signup-field" id="password-creation" autoComplete="off" placeholder="Password" value={userInfo.password} onChange={(event) => setUserInfo(prev => ({ ...prev, password: event.target.value }))} />
         {/*Might add back password confiramtion later. Make sure that basic new user creation is functioning first*/}
         {/* <label htmlFor="password-confirmation">Confirm Password</label>
         <input type="password" className="signup-field" id="password-confirmation" placeholder="Confirm Password" /> */}
         <label htmlFor="email-creation">Steam ID</label>
-        <input type="text" className="signup-field" id="steam-id-import" placeholder="76561198008227465" value={userInfo.steamIdNumber || ''} onChange={(event) => setUserInfo(prev => ({ ...prev, steamIdNumber: event.target.value }))} />
+        <input type="text" className="signup-field" id="steam-id-import" autoComplete="off" placeholder="76561198008227465" value={userInfo.steamIdNumber || ''} onChange={(event) => setUserInfo(prev => ({ ...prev, steamIdNumber: event.target.value }))} />
 
       </div>
       <div className="signup-buttons">

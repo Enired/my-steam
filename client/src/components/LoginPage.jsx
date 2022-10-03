@@ -38,7 +38,7 @@ export const LoginPage = (props) => {
       <h2>Login</h2>
       <div className="login-text">
         <label htmlFor="login-name">Username</label>
-        <input type="text" name="login-name" id="login-name" value={props.username} onChange={(event) => { props.setUsername(event.target.value); }} />
+        <input type="text" name="login-name" id="login-name" autoComplete="off" value={props.username} onChange={(event) => { props.setUsername(event.target.value); }} />
         <label htmlFor="login-password">Password</label>
         <input type="password" name="login-password" id="login-password" autoComplete="off" value={props.password} onChange={(event) => { props.setPassword(event.target.value); }} />
       </div>
