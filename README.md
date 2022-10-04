@@ -51,11 +51,23 @@ npm start
 Logging In
 ![Logging in](https://github.com/Enired/my-steam/blob/master/docs/demonstration-gallery/login.gif)
 Browsing Lists
+
+-----
+
 ![Browsing lists](https://github.com/Enired/my-steam/blob/master/docs/demonstration-gallery/browsing-lists.gif)
 Updating List Entries
+
+-----
+
 ![Updating list entries](https://github.com/Enired/my-steam/blob/master/docs/demonstration-gallery/updating-list-items.gif)
+
+-----
+
 Creating an account
 ![Signing-up](https://github.com/Enired/my-steam/blob/master/docs/demonstration-gallery/new-user-signup.gif)
+
+-----
+
 Error messages
 ![Error messages](https://github.com/Enired/my-steam/blob/master/docs/demonstration-gallery/error-messages-and-misc.gif)
 
