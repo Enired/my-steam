@@ -4,7 +4,7 @@
 
 ## About
 
-React webapp for gamers/steam users to track the status of the games in their library. Users will be able import their list of games upon signup. Each game can be marked as:
+React webapp for gamers/steam users to track the status of the games in their library. Users will be able to import their list of games upon signup. Each game can be marked as:
   - Current
   - Completed
   - Dropped
@@ -48,10 +48,15 @@ npm start
 - Node
 
 ## Gallery
+Logging In
 ![Logging in](https://github.com/Enired/my-steam/blob/master/docs/demonstration-gallery/login.gif)
+Browsing Lists
 ![Browsing lists](https://github.com/Enired/my-steam/blob/master/docs/demonstration-gallery/browsing-lists.gif)
+Updating List Entries
 ![Updating list entries](https://github.com/Enired/my-steam/blob/master/docs/demonstration-gallery/updating-list-items.gif)
+Creating an account
 ![Signing-up](https://github.com/Enired/my-steam/blob/master/docs/demonstration-gallery/new-user-signup.gif)
+Error messages
 ![Error messages](https://github.com/Enired/my-steam/blob/master/docs/demonstration-gallery/error-messages-and-misc.gif)
 
 
