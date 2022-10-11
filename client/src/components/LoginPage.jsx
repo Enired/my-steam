@@ -5,6 +5,7 @@ import axios from 'axios';
 
 export const LoginPage = (props) => {
 
+  const [openLoggingInModal, setOpenLoggingInModal] = useState(false);
   const [openEmptyFieldsError, setOpenEmptyFieldsError] = useState(false);
   const [openIncorrectCredentialsError, setOpenIncorrectCredentialsError] = useState(false);
 
@@ -17,14 +18,17 @@ export const LoginPage = (props) => {
   };
 
   const login = (username) => {
+    setOpenLoggingInModal(true)
     axios.get(`users/${username}`)
       .then((res) => {
+        setOpenLoggingInModal(false)
         if (res.data[0].password === props.password) {
           document.cookie = res.data[0].steam_id_number;
           props.switchViewLogin();
           props.setLoggedIn(true);
         }
         else {
+          setOpenLoggingInModal(false)
           setOpenIncorrectCredentialsError(true)
         }
       
@@ -48,6 +52,7 @@ export const LoginPage = (props) => {
         <button className="action-button" id="forgot-password-button" onClick={()=>props.switchView(props.setSignupHidden)}>Forgot Password</button>
       </div>
 
+      <Modal className="message-modal" open={openLoggingInModal} onClose={() => setOpenLoggingInModal(false)}><div className="message-modal-message">Logging in now...</div></Modal>
       <Modal className="message-modal" open={openEmptyFieldsError} onClose={() => setOpenEmptyFieldsError(false)}><div className="message-modal-message">Please ensure all fields are filled.</div></Modal>
       <Modal className="message-modal" open={openIncorrectCredentialsError} onClose={() => setOpenIncorrectCredentialsError(false)}><div className="message-modal-message"> Login Error: Incorrect Credentials</div></Modal>
     </div>
