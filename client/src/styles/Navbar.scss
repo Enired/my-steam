@@ -12,12 +12,14 @@
   #nav-menu{
     color: #FFFFFF;
     font-size: 4vh;
+    margin-right: 70vw;
  
   }
   #nav-logo{
     height: 10vh;
-    padding-left: 13vw;
-    padding-right: 20vw;
+    position: absolute;
+    // padding-left: 13vw;
+    // padding-right: 20vw;
   }
 
 }
